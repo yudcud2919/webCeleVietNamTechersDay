@@ -1,0 +1,2033 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Báo Tường Điện Tử 20/11 — Tri Ân Thầy Cô & Kết Nối Yêu Thương</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Dancing+Script:wght@600;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="min-h-screen relative selection:bg-rose-800 selection:text-amber-100">
+
+  <!-- Background Particle Canvas (Falling Petals, Autumn Leaves, Fireflies) -->
+  <canvas id="petalCanvas" class="fixed inset-0 pointer-events-none z-20"></canvas>
+
+  <!-- Toast Notification -->
+  <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 max-w-sm w-full pointer-events-none px-4 sm:px-0"></div>
+
+  <!-- Hidden Background Audio Host (No Visible Player UI) -->
+  <div id="ytBgAudioHost" class="fixed -left-[9999px] -top-[9999px] w-px h-px opacity-0 pointer-events-none overflow-hidden" aria-hidden="true"></div>
+
+  <!-- Top Marquee Quote Ribbon -->
+  <div class="bg-gradient-to-r from-rose-950 via-rose-900 to-amber-900 text-amber-100 text-xs sm:text-sm py-2 overflow-hidden border-b border-amber-500/40 relative z-30">
+    <div class="marquee-track items-center gap-10">
+      <span class="inline-flex items-center gap-2 font-medium"><span class="text-amber-400">❀</span> "Muốn sang thì bắc cầu kiều — Muốn con hay chữ thì yêu lấy thầy"</span>
+      <span class="inline-flex items-center gap-2 font-medium"><span class="text-amber-400">✦</span> Chào mừng Ngày Nhà giáo Việt Nam 20/11 — Tôn sư trọng đạo, Uống nước nhớ nguồn</span>
+      <span class="inline-flex items-center gap-2 font-medium"><span class="text-amber-400">❀</span> "Có một nghề bụi phấn bám đầy tay — Người ta bảo đó là nghề trong sạch nhất"</span>
+      <span class="inline-flex items-center gap-2 font-medium"><span class="text-amber-400">✦</span> Sản phẩm dự thi Báo tường điện tử: "Tri ân thầy cô - Kết nối yêu thương"</span>
+      <span class="inline-flex items-center gap-2 font-medium"><span class="text-amber-400">❀</span> "Muốn sang thì bắc cầu kiều — Muốn con hay chữ thì yêu lấy thầy"</span>
+      <span class="inline-flex items-center gap-2 font-medium"><span class="text-amber-400">✦</span> Chào mừng Ngày Nhà giáo Việt Nam 20/11 — Tôn sư trọng đạo, Uống nước nhớ nguồn</span>
+      <span class="inline-flex items-center gap-2 font-medium"><span class="text-amber-400">❀</span> "Có một nghề bụi phấn bám đầy tay — Người ta bảo đó là nghề trong sạch nhất"</span>
+      <span class="inline-flex items-center gap-2 font-medium"><span class="text-amber-400">✦</span> Sản phẩm dự thi Báo tường điện tử: "Tri ân thầy cô - Kết nối yêu thương"</span>
+    </div>
+  </div>
+
+  <!-- Sticky Navigation Bar -->
+  <header class="site-navbar sticky top-0 z-40 backdrop-blur-md bg-[#FDF8F2]/95 border-b border-amber-700/20 shadow-sm">
+    <div class="site-navbar-inner max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-[68px] flex items-center justify-between gap-2 sm:gap-4">
+      <!-- Brand Identity -->
+      <a href="#trang-nhat" class="nav-brand flex items-center gap-2.5 sm:gap-3 group min-w-0 shrink-0">
+        <div class="nav-logo-badge w-10 h-10 shrink-0 rounded-xl bg-gradient-to-br from-rose-900 to-amber-700 flex items-center justify-center text-amber-100 shadow-md group-hover:scale-105 transition-transform">
+          <span class="font-editorial font-bold text-base sm:text-lg leading-none">20/11</span>
+        </div>
+        <div class="min-w-0">
+          <p class="font-editorial font-bold text-rose-950 text-sm sm:text-[15px] xl:text-base leading-tight truncate">Người Lái Đò Thầm Lặng</p>
+          <p id="navClassSubtitle" class="text-[11px] text-amber-800 font-medium leading-tight truncate mt-0.5">Báo Tường Điện Tử • Số Đặc Biệt 2026</p>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="nav-menu hidden lg:flex items-center justify-center gap-0.5 xl:gap-1.5 text-[13px] xl:text-sm font-semibold text-stone-700 shrink-0">
+        <a href="#xa-luan" class="nav-link px-2.5 xl:px-3 py-1.5 rounded-lg whitespace-nowrap hover:bg-rose-900/10 hover:text-rose-900 transition-colors">Bài Viết</a>
+        <a href="#sang-tac" class="nav-link px-2.5 xl:px-3 py-1.5 rounded-lg whitespace-nowrap hover:bg-rose-900/10 hover:text-rose-900 transition-colors">Thơ & Tản Văn</a>
+        <a href="#chuyen-do" class="nav-link px-2.5 xl:px-3 py-1.5 rounded-lg whitespace-nowrap hover:bg-rose-900/10 hover:text-rose-900 transition-colors">Truyền Thống & Đố Vui</a>
+        <a href="#cay-tri-an" class="nav-link px-2.5 xl:px-3 py-1.5 rounded-lg whitespace-nowrap hover:bg-rose-900/10 hover:text-rose-900 transition-colors">Cây Tri Ân</a>
+        <a href="#minh-chung" class="nav-link px-2.5 xl:px-3 py-1.5 rounded-lg whitespace-nowrap hover:bg-rose-900/10 hover:text-rose-900 transition-colors inline-flex items-center gap-1.5">
+          <span>Reference</span>
+          <span class="w-2 h-2 rounded-full bg-emerald-600 animate-ping shrink-0"></span>
+        </a>
+      </nav>
+
+      <!-- Interactive Controls: Particle Effect, Music Synth, Dâng Hoa, Mobile Menu -->
+      <div class="nav-actions flex items-center gap-1.5 sm:gap-2 shrink-0">
+        <!-- Particle Mode Switcher -->
+        <button id="btnParticleMode" type="button" class="nav-control-btn h-9 px-2.5 rounded-lg text-xs font-semibold bg-amber-100/90 hover:bg-amber-200 text-amber-950 border border-amber-400/60 inline-flex items-center justify-center gap-1.5 whitespace-nowrap shrink-0 transition-all" title="Đổi hiệu ứng chuyển động nền">
+          <span id="particleIcon" class="text-sm leading-none">🍁</span>
+          <span id="particleLabel" class="hidden md:inline lg:hidden xl:inline">Lá Thu & Hoa</span>
+        </button>
+
+        <!-- Ambient Melody Synth Button -->
+        <button id="btnMusicToggle" type="button" class="nav-control-btn h-9 px-2.5 rounded-lg text-xs font-semibold bg-rose-100/90 hover:bg-rose-200 text-rose-950 border border-rose-300 inline-flex items-center justify-center gap-1.5 whitespace-nowrap shrink-0 transition-all" title="Bật/Tắt nhạc nền Giai Điệu Tri Ân">
+          <span id="musicStatusIcon" class="text-sm leading-none">🎵</span>
+          <span id="musicStatusText" class="hidden md:inline lg:hidden xl:inline">Nhạc Tri Ân</span>
+          <span id="musicEqualizer" class="flex items-end gap-0.5 h-3.5 ml-0.5 shrink-0">
+            <span class="bar-1 w-0.5 h-1.5 bg-rose-800 rounded-full transition-all"></span>
+            <span class="bar-2 w-0.5 h-2.5 bg-amber-700 rounded-full transition-all"></span>
+            <span class="bar-3 w-0.5 h-1.5 bg-rose-800 rounded-full transition-all"></span>
+            <span class="bar-4 w-0.5 h-2 bg-amber-700 rounded-full transition-all"></span>
+          </span>
+        </button>
+
+        <!-- Offer Flower Action -->
+        <button id="btnOfferFlowerHeader" type="button" class="nav-cta-btn h-9 px-2.5 sm:px-3 rounded-lg text-xs font-semibold bg-gradient-to-r from-rose-800 to-amber-700 hover:from-rose-900 hover:to-amber-800 text-white shadow-sm inline-flex items-center justify-center gap-1.5 whitespace-nowrap shrink-0 animate-pulse-glow transition-all">
+          <span class="animate-heartbeat text-sm leading-none">💐</span>
+          <span class="hidden sm:inline">Tặng Hoa</span>
+          <span id="headerFlowerCount" class="px-1.5 py-0.5 text-[11px] leading-none bg-white/20 rounded-full font-bold">129</span>
+        </button>
+
+        <!-- Mobile Menu Button -->
+        <button id="btnMobileMenu" type="button" class="lg:hidden h-9 w-9 rounded-lg text-rose-950 hover:bg-amber-100 border border-amber-300 inline-flex items-center justify-center shrink-0 transition-colors" aria-label="Mở menu">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobileMenuPanel" class="hidden lg:hidden bg-[#FDF8F2]/95 backdrop-blur-md border-t border-amber-700/15 px-4 pt-2.5 pb-4 space-y-1 text-sm font-medium shadow-inner">
+      <a href="#xa-luan" class="mobile-nav-link block px-3 py-2 rounded-lg hover:bg-rose-900/10 text-rose-950 transition-colors">📖 Bài Viết: Người Lái Đò Thầm Lặng</a>
+      <a href="#sang-tac" class="mobile-nav-link block px-3 py-2 rounded-lg hover:bg-rose-900/10 text-rose-950 transition-colors">✒️ Góc Sáng Tác Học Sinh (Thơ & Tản Văn)</a>
+      <a href="#chuyen-do" class="mobile-nav-link block px-3 py-2 rounded-lg hover:bg-rose-900/10 text-rose-950 transition-colors">⛵ Truyền Thống Nhà Trường & Đố Vui 20/11</a>
+      <a href="#cay-tri-an" class="mobile-nav-link block px-3 py-2 rounded-lg hover:bg-rose-900/10 text-rose-950 transition-colors">🌳 Cây Tri Ân & Gửi Thiệp Yêu Thương</a>
+      <a href="#minh-chung" class="mobile-nav-link block px-3 py-2 rounded-lg hover:bg-rose-900/10 text-rose-950 transition-colors">✨ Reference</a>
+    </div>
+  </header>
+
+  <!-- MAIN NEWSPAPER CONTAINER -->
+  <main id="trang-nhat" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10 relative z-10">
+
+    <!-- NEWSPAPER MASTHEAD (MANCHETTE BÁO TƯỜNG) -->
+    <section class="newspaper-frame rounded-2xl p-5 sm:p-8 lg:p-10 mb-10 relative overflow-hidden">
+      <!-- Decorative Corner Ornaments -->
+      <div class="absolute top-3 left-3 w-8 h-8 border-t-2 border-l-2 border-rose-800/50 pointer-events-none"></div>
+      <div class="absolute top-3 right-3 w-8 h-8 border-t-2 border-r-2 border-rose-800/50 pointer-events-none"></div>
+      <div class="absolute bottom-3 left-3 w-8 h-8 border-b-2 border-l-2 border-rose-800/50 pointer-events-none"></div>
+      <div class="absolute bottom-3 right-3 w-8 h-8 border-b-2 border-r-2 border-rose-800/50 pointer-events-none"></div>
+
+      <!-- Top Newspaper Metadata Row -->
+      <div class="flex flex-wrap items-center justify-between gap-2 pb-4 mb-6 border-b-2 border-double border-amber-700/40 text-xs sm:text-sm text-stone-700">
+        <div class="flex items-center gap-2 font-medium">
+          <span class="px-2.5 py-0.5 rounded-full bg-rose-900 text-amber-100 font-semibold text-xs">SỐ ĐẶC BIỆT 20/11</span>
+          <span id="mastheadSchoolName">Trường THCS - THPT Thăng Long</span>
+        </div>
+        <div class="font-poetic italic text-base sm:text-lg text-rose-900 font-semibold">
+          "Tri ân thầy cô — Kết nối yêu thương"
+        </div>
+        <div class="flex items-center gap-2">
+          <span id="mastheadClassName" class="font-semibold text-amber-900">Tập thể Lớp 12A3</span>
+        </div>
+      </div>
+
+      <!-- Masthead Title Banner -->
+      <div class="text-center max-w-4xl mx-auto mb-8">
+        <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-amber-100/90 border border-amber-400/60 text-amber-900 text-xs sm:text-sm font-semibold mb-3">
+          <span>✨</span>
+          <span>ẤN PHẨM BÁO TƯỜNG ĐIỆN TỬ KỶ NIỆM 44 NĂM NGÀY NHÀ GIÁO VIỆT NAM (20/11/1982 – 20/11/2026)</span>
+          <span>✨</span>
+        </div>
+
+        <h1 class="font-editorial font-extrabold text-4xl sm:text-6xl lg:text-7xl tracking-tight shimmer-text leading-tight py-1">
+          BẾN ĐÒ TRI THỨC
+        </h1>
+
+        <p class="font-handwriting text-2xl sm:text-3xl text-rose-900 mt-2">
+          Ngọn lửa yêu thương thắp sáng những ước mơ xanh
+        </p>
+
+        <!-- Dynamic Typewriter Meaningful Quote Box -->
+        <div class="mt-4 max-w-2xl mx-auto px-4 py-2.5 rounded-xl bg-amber-50/90 border border-amber-300/70 shadow-inner min-h-[3.25rem] flex items-center justify-center">
+          <p class="text-xs sm:text-sm text-stone-800 italic">
+            <span class="text-rose-800 font-bold not-italic mr-1">❝</span>
+            <span id="typewriterText">Dưới ánh mặt trời không có nghề nào cao quý hơn nghề dạy học — nơi mỗi trang giáo án được viết bằng cả trái tim.</span>
+            <span class="inline-block w-0.5 h-4 bg-rose-800 ml-0.5 animate-pulse align-middle"></span>
+            <span class="text-rose-800 font-bold not-italic ml-1">❞</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Hero Grid: Featured Painting + Animated River Wave + Quick Stats -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        <!-- Main Hero Visual (8 cols) -->
+        <div class="lg:col-span-8 relative rounded-2xl overflow-hidden border-2 border-amber-600/40 shadow-xl group min-h-[300px] sm:min-h-[400px] flex flex-col justify-end">
+          <img
+            src="images/anh1.jpg"
+            alt="Tranh minh họa Người lái đò thầm lặng"
+            class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-1000"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-rose-950/90 via-rose-950/35 to-transparent"></div>
+
+          <!-- Floating Animated Ferry SVG Overlay on Bottom River -->
+          <div class="relative z-10 p-5 sm:p-7 text-amber-50">
+            <div class="flex flex-wrap items-center gap-2 mb-2">
+              <span class="px-2.5 py-0.5 rounded-md bg-amber-500/90 text-rose-950 font-bold text-xs uppercase tracking-wider">Tác Phẩm Chủ Đạo</span>
+            </div>
+            <h2 class="font-editorial text-2xl sm:text-3xl font-bold text-white leading-snug">
+              Người Lái Đò Thầm Lặng Giữa Dòng Sông Năm Tháng
+            </h2>
+            <p class="text-xs sm:text-sm text-amber-100/90 mt-2 max-w-2xl leading-relaxed">
+              Bao thế hệ học trò đã cập bến bờ tri thức, chỉ có người thầy vẫn lặng lẽ neo thuyền nơi bến cũ, gom từng hạt nắng thu và bụi phấn trắng để ươm mầm cho những chuyến đi xa.
+            </p>
+            <div class="mt-4 flex flex-wrap items-center gap-3">
+              <button id="btnReadEditorialHero" type="button" class="px-4 py-2 rounded-xl bg-amber-400 hover:bg-amber-300 text-rose-950 font-bold text-xs sm:text-sm shadow-md transition-all flex items-center gap-1.5">
+                <span>📖 Đọc bài viết Mở Đầu</span>
+              </button>
+              <a href="#cay-tri-an" class="px-4 py-2 rounded-xl bg-white/15 hover:bg-white/25 backdrop-blur-sm text-white font-semibold text-xs sm:text-sm border border-white/30 transition-all">
+                💌 Gửi Lời Chúc Lên Cây Tri Ân
+              </a>
+            </div>
+          </div>
+
+          <!-- Animated SVG River Waves at bottom of hero -->
+          <div class="relative z-10 h-8 w-full overflow-hidden opacity-75 pointer-events-none">
+            <svg class="w-full h-full" viewBox="0 0 1200 60" preserveAspectRatio="none">
+              <path d="M0,30 C300,60 600,0 900,30 C1050,45 1150,20 1200,30 L1200,60 L0,60 Z" fill="#F59E0B" fill-opacity="0.35"></path>
+              <path d="M0,40 C250,10 550,55 850,25 C1000,10 1120,45 1200,35 L1200,60 L0,60 Z" fill="#FDF8F2" fill-opacity="0.65"></path>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Right Column: Thông Điệp Chủ Đạo & Interactive Tribute Counter (4 cols) -->
+        <div class="lg:col-span-4 flex flex-col justify-between gap-4">
+          <!-- Box 1: Thông Điệp Tri Ân -->
+          <div class="p-5 rounded-2xl bg-gradient-to-br from-rose-950 via-rose-900 to-amber-950 text-amber-50 shadow-lg border border-amber-500/40 relative overflow-hidden">
+            <div class="absolute -right-6 -top-6 w-24 h-24 rounded-full bg-amber-400/10 blur-xl pointer-events-none"></div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold uppercase tracking-widest text-amber-300">Thông Điệp Trái Tim</span>
+              <span class="text-xl animate-float-slow">📚</span>
+            </div>
+            <blockquote class="font-poetic italic text-lg sm:text-xl text-amber-100 leading-relaxed">
+              "Thầy cô không chỉ trao cho chúng em chiếc chìa khóa mở cánh cửa tri thức, mà còn dạy chúng em cách thắp lên ngọn đèn nhân ái giữa cuộc đời."
+            </blockquote>
+            <p class="mt-3 text-xs text-amber-300/90 font-medium">
+              — Ban Biên Tập Báo Tường Điện Tử 20/11
+            </p>
+          </div>
+
+          <!-- Box 2: Interactive Counter & Flower Offering Card -->
+          <div class="p-5 rounded-2xl bg-amber-50/90 border-2 border-amber-500/40 shadow-sm flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between">
+                <h3 class="font-editorial font-bold text-rose-950 text-lg">Nhịp Đập Tri Ân</h3>
+                <span class="px-2 py-0.5 rounded-full bg-rose-100 text-rose-900 text-xs font-semibold">Tương tác trực tiếp</span>
+              </div>
+              <p class="text-xs text-stone-600 mt-1">
+                Mỗi đóa hoa dâng lên là một lời cảm ơn chân thành gửi tới những người gieo hạt thầm lặng.
+              </p>
+
+              <div class="grid grid-cols-3 gap-2 my-4 text-center">
+                <div class="p-2.5 rounded-xl bg-white border border-amber-200 shadow-sm">
+                  <p id="statFlowers" class="font-editorial font-extrabold text-xl sm:text-2xl text-rose-900">129</p>
+                  <p class="text-[11px] text-stone-600 font-medium">Đóa Hoa Tri Ân</p>
+                </div>
+                <div class="p-2.5 rounded-xl bg-white border border-amber-200 shadow-sm">
+                  <p id="statWishes" class="font-editorial font-extrabold text-xl sm:text-2xl text-amber-800">8</p>
+                  <p class="text-[11px] text-stone-600 font-medium">Thiệp Yêu Thương</p>
+                </div>
+                <div class="p-2.5 rounded-xl bg-white border border-amber-200 shadow-sm">
+                  <p id="statWorks" class="font-editorial font-extrabold text-xl sm:text-2xl text-emerald-800">3</p>
+                  <p class="text-[11px] text-stone-600 font-medium">Tác Phẩm Tự Sáng Tác</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <button id="btnOfferFlowerMain" type="button" class="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-rose-800 via-rose-700 to-amber-700 hover:from-rose-900 hover:to-amber-800 text-white font-bold text-sm shadow-md flex items-center justify-center gap-2 transition-all active:scale-95">
+                <span class="text-lg">🌹</span>
+                <span>Nhấn Dâng Hoa Ngàn Lời Tri Ân (+1)</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 1: bài viết & THƯ NGỎ (TIÊU CHÍ 1 - 30 ĐIỂM) -->
+    <section id="xa-luan" class="mb-14 scroll-mt-20 reveal-item">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-6 gap-2 border-b-2 border-amber-700/30 pb-3">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-rose-800">Chuyên Mục Trọng Tâm</span>
+          <h2 class="font-editorial font-bold text-2xl sm:text-4xl text-rose-950 mt-0.5">
+            Bài Viết: Ngọn Hải Đăng Của Tri Thức & Nhân Cách
+          </h2>
+        </div>
+        <span class="text-xs sm:text-sm font-poetic italic text-amber-900">
+          "Tôn sư trọng đạo — Mạch nguồn văn hóa ngàn đời của dân tộc Việt"
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        <!-- Editorial Article Card (7 cols) -->
+        <div class="lg:col-span-7 newspaper-frame rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="px-3 py-1 rounded-full bg-rose-900/10 text-rose-900 text-xs font-bold">Bài Viết Đặc Biệt</span>
+            </div>
+
+            <h3 class="font-editorial font-bold text-2xl sm:text-3xl text-rose-950 leading-snug mb-4">
+              Những Mùa Phấn Trắng Và Chuyến Đò Chở Nặng Yêu Thương
+            </h3>
+
+            <div class="space-y-3 text-sm sm:text-base text-stone-700 leading-relaxed text-justify">
+              <p class="first-letter:float-left first-letter:font-editorial first-letter:text-5xl first-letter:font-bold first-letter:text-rose-900 first-letter:mr-3 first-letter:leading-none">
+              Tháng Mười Một về mang theo cái se lạnh dịu dàng của gió thu và sắc nắng vàng ươm trải dài trên từng tán cây sân trường. Trong nhịp chảy hối hả của kỷ nguyên số — khi trí tuệ nhân tạo và những kho dữ liệu khổng lồ có thể giải đáp hàng triệu câu hỏi chỉ trong một tích tắc — có một giá trị vĩnh cửu mà không một cỗ máy nào có thể thay thế được: đó là ánh mắt bao dung, sự kiên nhẫn vô bờ và trái tim ấm nóng của người thầy.
+              </p>
+              <p>
+                Thầy cô không chỉ giảng dạy những định lý toán học, những vần thơ văn học hay quy luật của tự nhiên. Qua từng nét phấn trắng miệt mài trên bảng đen, qua những lời nhắc nhở ân cần khi chúng em vấp ngã, thầy cô đã truyền trao bài học lớn nhất của đời người: bài học về lòng trung thực, sự tử tế, lòng biết ơn và khát vọng vươn lên.
+              </p>
+              <p>
+                Truyền thống <strong>"Tôn sư trọng đạo"</strong> của mái trường thân yêu được hun đúc qua biết bao thế hệ. Mỗi mùa 20/11 đi qua không chỉ là dịp để học trò dâng tặng những bó hoa tươi thắm, mà còn là khoảng lặng thiêng liêng để mỗi chúng em tự soi chiếu lại mình, nỗ lực học tập và rèn luyện đạo đức để xứng đáng với niềm tin yêu mà thầy cô đã gửi gắm.
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-amber-300/70 flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-2">
+              <button id="btnLikeEditorial" type="button" class="px-3.5 py-1.5 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-900 border border-rose-300 text-xs font-semibold flex items-center gap-1.5 transition-all">
+                <span>❤️ Thả tim Bài Viết</span>
+                <span id="editorialLikeCount" class="font-bold">129</span>
+              </button>
+              <button id="btnOpenEditorialModal" type="button" class="px-3.5 py-1.5 rounded-xl bg-amber-100 hover:bg-amber-200 text-amber-950 border border-amber-400/60 text-xs font-semibold transition-all">
+                🔍 Chế độ đọc toàn màn hình
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visual + School Tradition Highlights (5 cols) -->
+        <div class="lg:col-span-5 flex flex-col gap-6">
+          <div class="rounded-2xl overflow-hidden border-2 border-amber-600/30 shadow-md bg-white editorial-card">
+            <div class="relative h-56 overflow-hidden">
+              <img
+                src="images/anh2.jpg"
+                alt="Bàn giáo viên với trang giáo án, phấn trắng và hoa hồng"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="p-5">
+              <h4 class="font-editorial font-bold text-xl text-rose-950">Ba Giá Trị Cốt Lõi Của Mái Trường</h4>
+              <ul class="mt-3 space-y-2.5 text-xs sm:text-sm text-stone-700">
+                <li class="flex items-start gap-2.5">
+                  <span class="w-6 h-6 rounded-full bg-rose-900 text-amber-100 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">1</span>
+                  <div><strong>Tri Thức Vững Vàng:</strong> Kết hợp tinh hoa giáo dục truyền thống với tư duy sáng tạo, làm chủ công nghệ số có trách nhiệm.</div>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="w-6 h-6 rounded-full bg-amber-700 text-white flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">2</span>
+                  <div><strong>Đạo Đức Trong Sáng:</strong> Giữ gìn nét đẹp lễ phép, kính thầy yêu bạn, trung thực trong học tập và cuộc sống.</div>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="w-6 h-6 rounded-full bg-emerald-800 text-white flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">3</span>
+                  <div><strong>Kết Nối Yêu Thương:</strong> Mỗi lớp học là một gia đình, nơi thầy cô và học trò cùng sẻ chia, đồng hành vượt qua thử thách.</div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: GÓC SÁNG TÁC HỌC SINH — THƠ, TẢN VĂN, KÝ ỨC (TIÊU CHÍ 2 - 20 ĐIỂM) -->
+    <section id="sang-tac" class="mb-14 scroll-mt-20 reveal-item">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-6 gap-4 border-b-2 border-amber-700/30 pb-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-rose-800">Tác Phẩm Tự Sáng Tác</span>
+          <h2 class="font-editorial font-bold text-2xl sm:text-4xl text-rose-950 mt-0.5">
+            Vườn Hoa Văn Học — Tiếng Lòng Học Trò
+          </h2>
+        </div>
+
+        <!-- Category Filter Tabs + Search Input -->
+        <div class="flex flex-wrap items-center gap-2">
+          <button type="button" data-filter="all" class="work-filter-btn h-9 px-3.5 rounded-xl text-xs font-bold bg-rose-900 text-white border border-rose-900 shadow-sm inline-flex items-center justify-center gap-1.5 leading-none whitespace-nowrap transition-all">
+            <span>Tất cả (3)</span>
+          </button>
+          <button type="button" data-filter="tho" class="work-filter-btn h-9 px-3.5 rounded-xl text-xs font-bold bg-amber-100 text-amber-950 border border-amber-300/80 hover:bg-amber-200 inline-flex items-center justify-center gap-1.5 leading-none whitespace-nowrap transition-all">
+            <span class="text-sm leading-none">✒️</span>
+            <span>Thơ Tự Sáng Tác</span>
+          </button>
+          <button type="button" data-filter="tan-van" class="work-filter-btn h-9 px-3.5 rounded-xl text-xs font-bold bg-amber-100 text-amber-950 border border-amber-300/80 hover:bg-amber-200 inline-flex items-center justify-center gap-1.5 leading-none whitespace-nowrap transition-all">
+            <span class="text-sm leading-none">📜</span>
+            <span>Tản Văn & Hồi Ức</span>
+          </button>
+          <div class="relative flex items-center">
+            <span class="absolute inset-y-0 left-3 flex items-center pointer-events-none text-xs text-stone-400 leading-none">🔎</span>
+            <input
+              id="searchWorksInput"
+              type="text"
+              placeholder="Tìm bài viết, tác giả..."
+              class="h-9 pl-8 pr-3.5 rounded-xl text-xs leading-none bg-white border border-amber-300 focus:outline-none focus:border-rose-800 text-stone-800"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Grid of Student Works rendered dynamically via JS -->
+      <div id="worksGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </section>
+
+    <!-- SECTION 3: CHUYẾN ĐÒ TRI THỨC & ĐỐ VUI TƯƠNG TÁC (TIÊU CHÍ 1 & 4) -->
+    <section id="chuyen-do" class="mb-14 scroll-mt-20 reveal-item">
+      <div class="newspaper-frame rounded-2xl p-6 sm:p-8 lg:p-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+          <!-- Left 6 Cols: Interactive Journey Timeline + Schoolyard Illustration -->
+          <div class="lg:col-span-6 space-y-5">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-widest text-rose-800">Hành Trình Trưởng Thành</span>
+              <h2 class="font-editorial font-bold text-2xl sm:text-3xl text-rose-950 mt-0.5">
+                Bốn Bến Đò Ký Ức Dưới Mái Trường
+              </h2>
+              <p class="text-xs sm:text-sm text-stone-600 mt-1">
+                Nhấn vào từng chặng hành trình để ôn lại những kỷ niệm đẹp đẽ giữa thầy cô và mái trường.
+              </p>
+            </div>
+
+            <!-- Interactive Stage Buttons -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2" id="journeyTabs">
+              <button type="button" data-stage="0" class="journey-tab-btn px-3 py-2 rounded-xl text-xs font-bold bg-rose-900 text-white shadow-sm transition-all">
+                1. Ngày Đầu Tựu Trường
+              </button>
+              <button type="button" data-stage="1" class="journey-tab-btn px-3 py-2 rounded-xl text-xs font-bold bg-amber-100 text-amber-950 hover:bg-amber-200 transition-all">
+                2. Bài Giảng Đầu Tiên
+              </button>
+              <button type="button" data-stage="2" class="journey-tab-btn px-3 py-2 rounded-xl text-xs font-bold bg-amber-100 text-amber-950 hover:bg-amber-200 transition-all">
+                3. Những Lần Vấp Ngã
+              </button>
+              <button type="button" data-stage="3" class="journey-tab-btn px-3 py-2 rounded-xl text-xs font-bold bg-amber-100 text-amber-950 hover:bg-amber-200 transition-all">
+                4. Chắp Cánh Vươn Xa
+              </button>
+            </div>
+
+            <!-- Dynamic Stage Detail Card -->
+            <div id="journeyStageContent" class="p-5 rounded-2xl bg-amber-50/90 border border-amber-300 shadow-inner space-y-2">
+              <div class="flex items-center justify-between">
+                <span id="stageBadge" class="px-2.5 py-0.5 rounded-full bg-rose-800 text-white text-xs font-semibold">Chặng 1 • Mùa Thu Bỡ Ngỡ</span>
+                <span id="stageIcon" class="text-2xl">🍂</span>
+              </div>
+              <h3 id="stageTitle" class="font-editorial font-bold text-xl text-rose-950">
+                Ánh Mắt Dịu Hiền Nơi Cổng Trường Mùa Thu
+              </h3>
+              <p id="stageDesc" class="text-xs sm:text-sm text-stone-700 leading-relaxed">
+                Ngày đầu tiên bước qua cánh cổng trường với bao bỡ ngỡ, chính nụ cười ấm áp và cái nắm tay khích lệ của thầy cô chủ nhiệm đã biến nơi xa lạ thành ngôi nhà thứ hai tràn ngập tiếng cười.
+              </p>
+              <p id="stageQuote" class="font-poetic italic text-base text-rose-900 pt-1">
+                "Bước chân nhỏ ngập ngừng nơi bậc cửa — Thầy mỉm cười mở cả bầu trời xanh."
+              </p>
+            </div>
+
+            <!-- Schoolyard Watercolor Card -->
+            <div class="relative rounded-2xl overflow-hidden border border-amber-400/60 shadow-md h-52">
+              <img
+                src="images/anh3.jpg"
+                alt="Sân trường nắng thu kỷ niệm"
+                class="w-full h-full object-cover"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-transparent flex items-end p-4">
+                <div class="text-amber-50">
+                  <p class="font-editorial font-bold text-sm sm:text-base">Khoảnh Khắc Nắng Sân Trường</p>
+                  <p class="text-[11px] text-amber-200/90">Nơi lưu giữ những kỷ niệm trong trẻo dưới mái trường mến yêu</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right 6 Cols: Interactive 20/11 Quiz ("Góc Tương Tác: Thử Thách Tri Ân") -->
+          <div class="lg:col-span-6 bg-gradient-to-b from-amber-50/90 to-rose-50/60 rounded-2xl p-5 sm:p-6 border-2 border-amber-400/60 shadow-sm">
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <div>
+                <span class="px-2.5 py-0.5 rounded-full bg-amber-600 text-white text-[11px] font-bold uppercase">Góc Tương Tác</span>
+                <h3 class="font-editorial font-bold text-xl sm:text-2xl text-rose-950 mt-1">
+                  Hộp Thư Tri Thức: Tìm Hiểu Ngày 20/11
+                </h3>
+              </div>
+              <div class="text-right">
+                <span class="text-xs text-stone-500 block">Điểm của bạn</span>
+                <span id="quizScoreBadge" class="font-editorial font-extrabold text-xl text-rose-900">0 / 4</span>
+              </div>
+            </div>
+
+            <p class="text-xs sm:text-sm text-stone-600 mb-4">
+              Cùng kiểm tra hiểu biết về lịch sử Ngày Nhà giáo Việt Nam 20/11 và truyền thống tôn sư trọng đạo để nhận <strong>Huy Hiệu Tri Ân Điện Tử</strong>!
+            </p>
+
+            <!-- Quiz Container -->
+            <div id="quizContainer" class="space-y-4"></div>
+
+            <div class="mt-4 pt-3 border-t border-amber-300/60 flex items-center justify-between">
+              <span id="quizFeedbackText" class="text-xs font-medium text-stone-700">Hãy chọn đáp án đúng cho 4 câu hỏi trên.</span>
+              <button id="btnResetQuiz" type="button" class="px-3 py-1.5 rounded-lg bg-white hover:bg-amber-100 text-amber-900 border border-amber-400 text-xs font-semibold transition-colors">
+                🔄 Làm lại
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: CÂY TRI ÂN TƯƠNG TÁC & GỬI THIỆP YÊU THƯƠNG (TIÊU CHÍ 1 & 4) -->
+    <section id="cay-tri-an" class="mb-14 scroll-mt-20 reveal-item">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-6 gap-2 border-b-2 border-amber-700/30 pb-3">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-rose-800">Không Gian Kết Nối Yêu Thương</span>
+          <h2 class="font-editorial font-bold text-2xl sm:text-4xl text-rose-950 mt-0.5">
+            Cây Tri Ân & Bức Tường Thiệp Điện Tử
+          </h2>
+        </div>
+        <p class="text-xs sm:text-sm text-stone-600">
+          Nhấn vào từng bông hoa/đèn lồng trên cây để đọc lời chúc hoặc tự tay treo lên một cánh thiệp mới!
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+
+        <!-- Interactive SVG Gratitude Tree (7 cols) -->
+        <div class="lg:col-span-7 newspaper-frame rounded-2xl p-5 sm:p-6 relative overflow-hidden">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+            <div>
+              <h3 class="font-editorial font-bold text-xl text-rose-950">🌳 Cây Đại Thụ Tri Ân Mùa Thu</h3>
+              <p class="text-xs text-stone-600">Mỗi bông hoa phát sáng trên tán cây lưu giữ một lời nhắn gửi yêu thương.</p>
+            </div>
+            <span id="treeNodeCountBadge" class="px-3 py-1 rounded-full bg-amber-100 text-amber-900 border border-amber-400 text-xs font-bold">
+              8 cánh hoa đang nở
+            </span>
+          </div>
+
+          <!-- Interactive SVG Canvas of the Tree -->
+          <div class="relative w-full bg-gradient-to-b from-amber-50/90 via-orange-50/60 to-rose-100/50 rounded-xl border border-amber-300/80 overflow-hidden">
+            <svg id="gratitudeTreeSvg" viewBox="0 0 700 440" class="w-full h-auto select-none">
+              <defs>
+                <radialGradient id="sunGlow" cx="50%" cy="40%" r="50%">
+                  <stop offset="0%" stop-color="#FDE68A" stop-opacity="0.85" />
+                  <stop offset="60%" stop-color="#F59E0B" stop-opacity="0.2" />
+                  <stop offset="100%" stop-color="#FDF8F2" stop-opacity="0" />
+                </radialGradient>
+                <linearGradient id="trunkGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#451A03" />
+                  <stop offset="50%" stop-color="#78350F" />
+                  <stop offset="100%" stop-color="#451A03" />
+                </linearGradient>
+              </defs>
+
+              <!-- Warm Sun Halo -->
+              <circle cx="350" cy="190" r="195" fill="url(#sunGlow)" />
+
+              <!-- Distant Hills & Ground -->
+              <path d="M0,390 Q180,355 350,380 T700,375 L700,440 L0,440 Z" fill="#FDE68A" opacity="0.6" />
+              <path d="M0,405 Q230,375 450,400 T700,395 L700,440 L0,440 Z" fill="#D97706" opacity="0.28" />
+
+              <!-- Canopy Foliage Background Blobs -->
+              <ellipse cx="350" cy="165" rx="220" ry="115" fill="#9F1239" opacity="0.12" />
+              <circle cx="230" cy="180" r="85" fill="#D97706" opacity="0.18" />
+              <circle cx="470" cy="175" r="90" fill="#B45309" opacity="0.16" />
+              <circle cx="350" cy="130" r="105" fill="#9F1239" opacity="0.16" />
+              <circle cx="290" cy="150" r="80" fill="#F59E0B" opacity="0.22" />
+              <circle cx="415" cy="145" r="80" fill="#EA580C" opacity="0.18" />
+
+              <!-- Tree Trunk & Branches -->
+              <path d="M320,415 Q340,330 338,255 Q335,205 265,165 M338,255 Q342,190 350,125 M345,265 Q385,205 455,165 M300,200 Q235,190 190,210 M395,205 Q460,195 510,215 M342,175 Q295,130 250,115 M352,175 Q405,130 450,115"
+                stroke="url(#trunkGrad)" stroke-width="16" stroke-linecap="round" fill="none" />
+              <path d="M312,415 C325,360 335,300 338,250 C342,300 355,360 370,415 Z" fill="url(#trunkGrad)" />
+
+              <!-- Group for Dynamic Blossom/Lantern Nodes -->
+              <g id="treeBlossomsGroup"></g>
+            </svg>
+
+            <!-- Active Selected Blossom Preview Bar -->
+            <div id="selectedTreeWishBox" class="p-4 bg-white/95 backdrop-blur-sm border-t border-amber-300 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+              <div class="flex items-start gap-3">
+                <span id="treeActiveIcon" class="text-2xl sm:text-3xl shrink-0">📚</span>
+                <div>
+                  <div class="flex flex-wrap items-center gap-2">
+                    <span id="treeActiveRecipient" class="font-editorial font-bold text-rose-950 text-sm sm:text-base">Kính gửi: Cô Chủ Nhiệm & Quý Thầy Cô Bộ Môn</span>
+                    <span id="treeActiveSender" class="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-900 font-medium">Tập thể học sinh lớp</span>
+                  </div>
+                  <p id="treeActiveMessage" class="text-xs sm:text-sm text-stone-700 italic mt-1">
+                    "Cảm ơn thầy cô đã luôn kiên nhẫn lắng nghe, bao dung với những thiếu sót và dìu dắt chúng em trưởng thành mỗi ngày. Kính chúc thầy cô luôn mạnh khỏe và hạnh phúc!"
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- E-Card & Wish Submission Form (5 cols) -->
+        <div class="lg:col-span-5 newspaper-frame rounded-2xl p-5 sm:p-6">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="font-editorial font-bold text-xl text-rose-950">💌 Viết Thiệp & Treo Hoa Tri Ân</h3>
+            <span class="text-xs text-rose-800 font-semibold">Hiển thị ngay trên cây</span>
+          </div>
+          <p class="text-xs text-stone-600 mb-4">
+            Hãy viết những lời chúc chân thành, nghiêm túc và ý nghĩa nhất dành tặng thầy cô. Lưu ý: Không đăng thông tin nhạy cảm hoặc chưa được phép.
+          </p>
+
+          <form id="wishForm" class="space-y-3.5">
+            <div>
+              <label for="wishSender" class="block text-xs font-semibold text-stone-700 mb-1">Người gửi (Bút danh / Nhóm học sinh) *</label>
+              <input
+                id="wishSender"
+                type="text"
+                required
+                maxlength="45"
+                placeholder="VD: Nhóm Học Sinh Tổ 1 / Một học trò nhỏ"
+                class="w-full px-3.5 py-2 rounded-xl text-xs sm:text-sm bg-white border border-amber-300 focus:outline-none focus:border-rose-800"
+              />
+            </div>
+
+            <div>
+              <label for="wishRecipient" class="block text-xs font-semibold text-stone-700 mb-1">Gửi tặng Thầy / Cô / Bộ môn *</label>
+              <input
+                id="wishRecipient"
+                type="text"
+                required
+                maxlength="55"
+                placeholder="VD: Quý Thầy Cô Tổ Toán - Tin / Cô Giáo Chủ Nhiệm"
+                class="w-full px-3.5 py-2 rounded-xl text-xs sm:text-sm bg-white border border-amber-300 focus:outline-none focus:border-rose-800"
+              />
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-stone-700 mb-1">Chọn biểu tượng hoa tri ân</label>
+              <div class="grid grid-cols-5 gap-2" id="flowerSymbolPicker">
+                <button type="button" data-symbol="📚" class="symbol-pick-btn py-1.5 rounded-xl border-2 border-rose-800 bg-rose-50 text-lg flex items-center justify-center">📚</button>
+                <button type="button" data-symbol="🌹" class="symbol-pick-btn py-1.5 rounded-xl border border-amber-300 bg-white text-lg flex items-center justify-center">🌹</button>
+                <button type="button" data-symbol="🌻" class="symbol-pick-btn py-1.5 rounded-xl border border-amber-300 bg-white text-lg flex items-center justify-center">🌻</button>
+                <button type="button" data-symbol="🏮" class="symbol-pick-btn py-1.5 rounded-xl border border-amber-300 bg-white text-lg flex items-center justify-center">🏮</button>
+                <button type="button" data-symbol="💐" class="symbol-pick-btn py-1.5 rounded-xl border border-amber-300 bg-white text-lg flex items-center justify-center">💐</button>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <label for="wishMessage" class="block text-xs font-semibold text-stone-700">Lời chúc tri ân *</label>
+                <button id="btnSuggestWish" type="button" class="text-[11px] text-rose-800 hover:underline font-semibold">
+                  ✨ Gợi ý lời chúc hay
+                </button>
+              </div>
+              <textarea
+                id="wishMessage"
+                rows="3"
+                required
+                maxlength="260"
+                placeholder="Nhân ngày Nhà giáo Việt Nam 20/11, chúng em kính chúc Thầy Cô luôn dồi dào sức khỏe, giữ mãi ngọn lửa nhiệt huyết..."
+                class="w-full px-3.5 py-2 rounded-xl text-xs sm:text-sm bg-white border border-amber-300 focus:outline-none focus:border-rose-800"
+              ></textarea>
+            </div>
+
+            <button type="submit" class="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-rose-900 to-amber-700 hover:from-rose-950 hover:to-amber-800 text-white font-bold text-xs sm:text-sm shadow-md transition-all flex items-center justify-center gap-2">
+              <span>🌸 Treo Lời Chúc Lên Cây Tri Ân</span>
+            </button>
+          </form>
+        </div>
+
+      </div>
+
+      <!-- Wall of Gratitude Cards (Scrollable & Collapsible) -->
+      <div class="mt-6 newspaper-frame rounded-2xl p-4 sm:p-5">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div class="flex items-center gap-2.5">
+            <h3 class="font-editorial font-bold text-lg sm:text-xl text-rose-950">Danh Sách Thiệp Tri Ân Đã Gửi</h3>
+            <span id="wishesWallCountBadge" class="px-2.5 py-0.5 rounded-full bg-rose-900/10 text-rose-900 border border-rose-800/20 text-xs font-bold">
+              8 thiệp
+            </span>
+          </div>
+          <div class="flex items-center gap-2">
+            <button
+              id="btnExpandWishesScroll"
+              type="button"
+              class="h-8 px-3 rounded-lg bg-amber-100 hover:bg-amber-200 text-amber-950 border border-amber-300/80 text-xs font-semibold inline-flex items-center justify-center gap-1 leading-none whitespace-nowrap transition-colors"
+            >
+              <span>↕ Mở rộng khung cuộn</span>
+            </button>
+            <button
+              id="btnToggleWishesCollapse"
+              type="button"
+              class="h-8 px-3 rounded-lg bg-white hover:bg-rose-50 text-rose-900 border border-rose-300 text-xs font-semibold inline-flex items-center justify-center gap-1 leading-none whitespace-nowrap transition-colors"
+            >
+              <span>− Thu gọn danh sách</span>
+            </button>
+          </div>
+        </div>
+
+        <div id="wishesWallCollapsible" class="mt-4 transition-all duration-300">
+          <div id="wishesWallScrollBox" class="max-h-64 overflow-y-auto pr-1.5 scroll-smooth">
+            <div id="wishesWallGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5"></div>
+          </div>
+          <p class="mt-2.5 text-[11px] text-stone-500 text-right italic">
+            💡 Cuộn khung để xem thêm các tấm thiệp tri ân hoặc nhấn "Thu gọn danh sách" để ẩn bớt.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: REFERENCE (TECHNIQUE & SOURCES) -->
+    <section id="minh-chung" class="mb-12 scroll-mt-20 reveal-item">
+      <div class="newspaper-frame rounded-2xl p-6 sm:p-8">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 mb-5 border-b border-amber-700/25">
+          <div class="flex items-center gap-2.5">
+            <span class="px-2.5 py-0.5 rounded-md bg-rose-900 text-amber-100 text-[11px] font-bold uppercase tracking-wider">Reference</span>
+            <h2 class="font-editorial font-bold text-xl sm:text-2xl text-rose-950">
+              Công Nghệ Thực Hiện & Nguồn Tư Liệu
+            </h2>
+          </div>
+          <span class="text-xs text-stone-500">Tổng hợp công cụ phát triển & nguồn tham khảo hình ảnh, âm thanh</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm text-stone-700">
+          <!-- Technique Card -->
+          <div class="p-4 sm:p-5 rounded-xl bg-white/90 border border-amber-200/90 shadow-sm">
+            <div class="flex items-center justify-between mb-3 pb-2 border-b border-amber-100">
+              <p class="font-editorial font-bold text-base text-rose-950">⚙️ Technique (Công nghệ & Kỹ thuật)</p>
+              <span class="text-[11px] text-stone-400 font-medium">Stack & AI</span>
+            </div>
+            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              <li>
+                <a href="https://aistudio.google.com/docs/models/gemini-4-argon?hl=vi" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between px-3 py-2 rounded-lg bg-amber-50/70 hover:bg-amber-100/80 border border-amber-200/70 text-stone-800 hover:text-rose-900 font-medium transition-colors">
+                  <span>Google Gemini 4 Argon</span>
+                  <span class="text-[11px] text-amber-700">↗</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.w3schools.com/html/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between px-3 py-2 rounded-lg bg-amber-50/70 hover:bg-amber-100/80 border border-amber-200/70 text-stone-800 hover:text-rose-900 font-medium transition-colors">
+                  <span>HTML5 Standard</span>
+                  <span class="text-[11px] text-amber-700">↗</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.w3schools.com/css/default.asp" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between px-3 py-2 rounded-lg bg-amber-50/70 hover:bg-amber-100/80 border border-amber-200/70 text-stone-800 hover:text-rose-900 font-medium transition-colors">
+                  <span>CSS3 Styling</span>
+                  <span class="text-[11px] text-amber-700">↗</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between px-3 py-2 rounded-lg bg-amber-50/70 hover:bg-amber-100/80 border border-amber-200/70 text-stone-800 hover:text-rose-900 font-medium transition-colors">
+                  <span>Tailwind CSS</span>
+                  <span class="text-[11px] text-amber-700">↗</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- References Card -->
+          <div class="p-4 sm:p-5 rounded-xl bg-white/90 border border-amber-200/90 shadow-sm">
+            <div class="flex items-center justify-between mb-3 pb-2 border-b border-amber-100">
+              <p class="font-editorial font-bold text-base text-rose-950">📌 References (Nguồn tư liệu)</p>
+              <span class="text-[11px] text-stone-400 font-medium">Media & Artwork</span>
+            </div>
+            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              <li>
+                <a href="https://pin.it/6K79inzXu" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between px-3 py-2 rounded-lg bg-amber-50/70 hover:bg-amber-100/80 border border-amber-200/70 text-stone-800 hover:text-rose-900 font-medium transition-colors">
+                  <span>Ảnh minh họa 1 (Pinterest)</span>
+                  <span class="text-[11px] text-amber-700">↗</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://pin.it/6x01HfI8G" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between px-3 py-2 rounded-lg bg-amber-50/70 hover:bg-amber-100/80 border border-amber-200/70 text-stone-800 hover:text-rose-900 font-medium transition-colors">
+                  <span>Ảnh minh họa 2 (Pinterest)</span>
+                  <span class="text-[11px] text-amber-700">↗</span>
+                </a>
+              </li>
+              <li class="sm:col-span-2">
+                <a href="https://www.youtube.com/watch?v=gOwbMN0JswA&list=RDgOwbMN0JswA&start_radio=1" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between px-3 py-2 rounded-lg bg-amber-50/70 hover:bg-amber-100/80 border border-amber-200/70 text-stone-800 hover:text-rose-900 font-medium transition-colors">
+                  <span>Nhạc nền Tri Ân (YouTube Audio)</span>
+                  <span class="text-[11px] text-amber-700">↗</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-gradient-to-b from-rose-950 to-[#1F0B0E] text-amber-100/90 border-t-4 border-amber-600 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pb-8 border-b border-amber-500/20">
+        <div>
+          <p class="font-editorial font-bold text-xl text-amber-300">Báo Tường Điện Tử: Bến Đò Tri Thức</p>
+          <p class="text-xs sm:text-sm text-amber-100/80 mt-2 leading-relaxed">
+            Ấn phẩm dự thi chào mừng Ngày Nhà giáo Việt Nam 20/11 với chủ đề <em>"Tri ân thầy cô - Kết nối yêu thương"</em>. Kính chúc quý thầy cô luôn dồi dào sức khỏe, hạnh phúc và giữ mãi ngọn lửa đam mê.
+          </p>
+        </div>
+        <div>
+          <p class="font-editorial font-bold text-lg text-amber-300">Thông Tin Đơn Vị Dự Thi</p>
+          <ul class="mt-2 space-y-1.5 text-xs sm:text-sm text-amber-100/80">
+            <li>• Đơn vị: <strong id="footerClassName">Chi đoàn Lớp 12A3</strong></li>
+            <li>• Trường: <strong id="footerSchoolName">Trường THCS - THPT Thăng Long</strong></li>
+            <li>• Chuyên đề: Báo tường điện tử ứng dụng công nghệ số & AI có trách nhiệm</li>
+          </ul>
+        </div>
+        <div class="flex flex-col justify-between items-start md:items-end">
+          <div class="text-left md:text-right">
+            <p class="font-handwriting text-2xl text-amber-300">Ngàn lời tri ân gửi tới Thầy Cô!</p>
+            <p class="text-xs text-amber-200/70 mt-1">Tháng 11 Năm 2026 • Tôn Sư Trọng Đạo</p>
+          </div>
+          <a href="#trang-nhat" class="mt-4 px-4 py-2 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/50 text-amber-200 text-xs font-semibold transition-all">
+            ↑ Lên đầu trang báo
+          </a>
+        </div>
+      </div>
+      <div class="pt-6 text-center text-xs text-amber-200/60">
+        © 2026 Nguyen Duc Duy
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL 1: ARTICLE / POEM READER MODAL -->
+  <div id="readerModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 backdrop-blur-sm p-4">
+    <div class="bg-[#FDF8F2] border-2 border-amber-600 rounded-2xl max-w-2xl w-full max-h-[88vh] flex flex-col shadow-2xl overflow-hidden">
+      <div class="px-6 py-4 bg-gradient-to-r from-rose-950 to-amber-900 text-amber-50 flex items-center justify-between">
+        <div>
+          <span id="modalWorkCategory" class="text-[11px] uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-amber-400 text-rose-950 font-bold">Thơ Tự Sáng Tác</span>
+          <h3 id="modalWorkTitle" class="font-editorial font-bold text-xl sm:text-2xl mt-1">Bụi Phấn Trắng & Ánh Nắng Thu</h3>
+        </div>
+        <button id="btnCloseReaderModal" type="button" class="w-8 h-8 rounded-lg bg-white/15 hover:bg-white/25 text-white flex items-center justify-center font-bold" aria-label="Đóng">
+          ✕
+        </button>
+      </div>
+
+      <div class="p-6 overflow-y-auto space-y-4 text-stone-800" id="modalWorkBody"></div>
+
+      <div class="px-6 py-3.5 bg-amber-50 border-t border-amber-300 flex flex-wrap items-center justify-between gap-2">
+        <span id="modalWorkAuthor" class="text-xs font-semibold text-rose-900">Tác giả: Bút danh Học Trò Nhỏ</span>
+        <div class="flex items-center gap-2">
+          <button id="btnModalHeart" type="button" class="px-3.5 py-1.5 rounded-xl bg-rose-800 hover:bg-rose-900 text-white text-xs font-bold flex items-center gap-1.5 transition-all">
+            <span>❤️ Yêu thích tác phẩm</span>
+          </button>
+          <button id="btnModalCloseBottom" type="button" class="px-3.5 py-1.5 rounded-xl bg-stone-200 hover:bg-stone-300 text-stone-800 text-xs font-semibold">
+            Đóng
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 2: CLASS CUSTOMIZATION & QR CODE GENERATOR (MỤC 2a) -->
+  <div id="qrClassModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 backdrop-blur-sm p-4">
+    <div class="bg-[#FDF8F2] border-2 border-amber-600 rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+      <div class="px-6 py-4 bg-gradient-to-r from-rose-950 to-amber-900 text-amber-50 flex items-center justify-between">
+        <div>
+          <span class="text-[11px] uppercase tracking-wider text-amber-300 font-bold">Chia Sẻ Báo Tường • Đường Dẫn & Mã QR</span>
+          <h3 class="font-editorial font-bold text-xl">Thông Tin Lớp & Mã QR Báo Tường</h3>
+        </div>
+        <button id="btnCloseQrModal" type="button" class="w-8 h-8 rounded-lg bg-white/15 hover:bg-white/25 text-white flex items-center justify-center font-bold" aria-label="Đóng">
+          ✕
+        </button>
+      </div>
+
+      <div class="p-6 space-y-4">
+        <p class="text-xs text-stone-600">
+          Bạn có thể cập nhật tên Lớp, tên Trường và đường dẫn sản phẩm của lớp để hiển thị trực tiếp trên Manchette trang báo và tạo mã QR đính kèm hồ sơ dự thi:
+        </p>
+
+        <div class="space-y-3">
+          <div>
+            <label for="inputClassName" class="block text-xs font-semibold text-stone-700 mb-1">Tên Chi đoàn / Tập thể Lớp</label>
+            <input id="inputClassName" type="text" value="Tập thể Lớp 12A3" class="w-full px-3 py-2 rounded-xl text-xs sm:text-sm bg-white border border-amber-300 focus:outline-none focus:border-rose-800" />
+          </div>
+          <div>
+            <label for="inputSchoolName" class="block text-xs font-semibold text-stone-700 mb-1">Tên Trường / Đoàn Trường</label>
+            <input id="inputSchoolName" type="text" value="Trường THCS - THPT Thăng Long" class="w-full px-3 py-2 rounded-xl text-xs sm:text-sm bg-white border border-amber-300 focus:outline-none focus:border-rose-800" />
+          </div>
+          <div>
+            <label for="inputShareUrl" class="block text-xs font-semibold text-stone-700 mb-1">Đường dẫn (URL) trang báo điện tử của lớp</label>
+            <input id="inputShareUrl" type="text" value="https://baotuong20-11-tri-an-thay-co.edu.vn/lop-12A3" class="w-full px-3 py-2 rounded-xl text-xs sm:text-sm bg-white border border-amber-300 focus:outline-none focus:border-rose-800" />
+          </div>
+          <button id="btnSaveClassInfo" type="button" class="w-full py-2 rounded-xl bg-rose-900 hover:bg-rose-950 text-white font-bold text-xs sm:text-sm transition-all">
+            ✓ Cập Nhật Tên Lớp & Tạo Lại Mã QR
+          </button>
+        </div>
+
+        <!-- Generated SVG QR Code Card -->
+        <div class="p-4 rounded-2xl bg-white border-2 border-amber-400 text-center space-y-2 shadow-inner">
+          <p class="text-xs font-bold text-rose-950 uppercase tracking-wider">Mã QR Truy Cập Báo Tường Điện Tử</p>
+          <div id="qrSvgWrapper" class="mx-auto w-44 h-44 p-2 bg-white border border-stone-200 rounded-xl flex items-center justify-center"></div>
+          <p id="qrCaptionClass" class="font-editorial font-bold text-sm text-rose-900">Tập thể Lớp 12A3 — Tri Ân Thầy Cô 20/11</p>
+          <p id="qrCaptionUrl" class="text-[11px] text-stone-500 break-all">https://baotuong20-11-tri-an-thay-co.edu.vn/lop-12A3</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INLINE JAVASCRIPT -->
+  <script>
+    (function () {
+      // -----------------------------------------------------------------------
+      // 1. STATE & INITIAL DATA
+      // -----------------------------------------------------------------------
+      let flowerCount = 129;
+      let editorialLikes = 129;
+      let selectedSymbol = '📚';
+      let currentWorkFilter = 'all';
+      let currentModalWorkId = null;
+      let particleMode = 'autumn'; // 'autumn' | 'fireflies' | 'off'
+
+      // Load saved counters safely from localStorage (reset baseline to 129)
+      try {
+        localStorage.removeItem('bt2011_flowers');
+        localStorage.removeItem('bt2011_ed_likes');
+        const savedFlowers = localStorage.getItem('bt2011_flowers_129');
+        if (savedFlowers) flowerCount = parseInt(savedFlowers, 10) || 129;
+        const savedEdLikes = localStorage.getItem('bt2011_ed_likes_129');
+        if (savedEdLikes) editorialLikes = parseInt(savedEdLikes, 10) || 129;
+      } catch (e) {
+        // Ignore storage error in sandboxed iframe
+      }
+
+      // Meaningful Quotes for Typewriter
+      const quotes = [
+        'Dưới ánh mặt trời không có nghề nào cao quý hơn nghề dạy học — nơi mỗi trang giáo án được viết bằng cả trái tim.',
+        'Một gánh sách không bằng một người thầy giỏi; một lời dạy ân cần theo bước học trò suốt cả cuộc đời.',
+        'Bụi phấn rơi cho tóc thầy thêm bạc — Để ước mơ học trò mãi xanh tươi giữa bầu trời rộng lớn.',
+        'Thầy cô là người gieo hạt giống tâm hồn, biến những điều bình dị thành hành trang quý giá nhất.'
+      ];
+
+      // Student Original Works (Tiêu chí 2 - 20 điểm)
+      const studentWorks = [
+        {
+          id: 'w1',
+          category: 'tho',
+          categoryLabel: 'Thơ Tự Sáng Tác',
+          title: 'Bụi Phấn Trắng & Ánh Nắng Thu',
+          author: 'Anonymous',
+          excerpt: 'Tháng mười một gió heo may khẽ chạm / Bụi phấn rơi vương trắng mái đầu thầy / Từng nét chữ chở bao niềm hy vọng / Cho cánh chim bay tới những tầng mây...',
+          likes: 129,
+          contentHtml: `
+            <div class="font-poetic text-lg sm:text-xl leading-relaxed text-center space-y-4 text-rose-950 italic bg-amber-50/70 p-6 rounded-xl border border-amber-200">
+              <p>Tháng mười một gió heo may khẽ chạm,<br/>Bụi phấn rơi vương trắng mái đầu thầy,<br/>Từng nét chữ chở bao niềm hy vọng,<br/>Cho cánh chim bay tới những tầng mây.</p>
+              <p>Bảng đen lặng nghe lời cô trầm ấm,<br/>Giảng điều hay, lẽ phải giữa cuộc đời,<br/>Dẫu năm tháng có làm phai màu áo,<br/>Ngọn lửa nghề vẫn rực sáng khôn nguôi.</p>
+              <p>Mai chúng em rời xa hàng phượng vĩ,<br/>Vẫn nhớ hoài ánh mắt buổi ban đầu,<br/>Xin gửi lại ngàn lời thương lời nhớ,<br/>Tri ân Người — nhịp cầu nối biển sâu.</p>
+            </div>
+            <p class="text-xs text-stone-500 text-center">Sáng tác của học sinh nhân dịp kỷ niệm Ngày Nhà giáo Việt Nam 20/11.</p>
+          `
+        },
+        {
+          id: 'w2',
+          category: 'tho',
+          categoryLabel: 'Thơ Tự Sáng Tác',
+          title: 'Chuyến Đò Không Tên Giữa Dòng Thời Gian',
+          author: 'Anonymous',
+          excerpt: 'Sông tri thức mênh mông con sóng vỗ / Người lái đò chẳng quản nắng hay mưa / Đưa bao lớp học trò sang bến mới / Vẫn mỉm cười nơi bến cũ ngày xưa...',
+          likes: 129,
+          contentHtml: `
+            <div class="font-poetic text-lg sm:text-xl leading-relaxed text-center space-y-4 text-rose-950 italic bg-amber-50/70 p-6 rounded-xl border border-amber-200">
+              <p>Sông tri thức mênh mông con sóng vỗ,<br/>Người lái đò chẳng quản nắng hay mưa,<br/>Đưa bao lớp học trò sang bến mới,<br/>Vẫn mỉm cười nơi bến cũ ngày xưa.</p>
+              <p>Có những đêm đèn khuya còn thức mãi,<br/>Trang giáo án thơm nồng hơi ấm bàn tay,<br/>Thầy gói trọn cả bầu trời nhân ái,<br/>Trao cho trò vững bước tới tương lai.</p>
+              <p>Dẫu mai này đi khắp miền đất nước,<br/>Chuyến đò xưa vẫn neo đậu trong tim,<br/>Ơn dạy dỗ tựa non cao biển rộng,<br/>Suốt cuộc đời chúng em mãi khắc ghi.</p>
+            </div>
+          `
+        },
+        {
+          id: 'w3',
+          category: 'tan-van',
+          categoryLabel: 'Tản Văn Tự Sáng Tác',
+          title: 'Trang Giáo Án Còn Thơm Mùi Mực Mới',
+          author: 'Anonymous',
+          excerpt: 'Có những buổi chiều muộn đi ngang qua phòng hội đồng, ánh đèn vàng hắt lên dáng cô đang cặm cụi chấm từng cuốn vở. Mỗi dòng nhận xét nhỏ đều chứa đựng cả sự tận tâm...',
+          likes: 129,
+          contentHtml: `
+            <div class="space-y-3 text-sm sm:text-base leading-relaxed text-justify">
+              <p>Có những buổi chiều cuối thu, khi tiếng trống tan trường đã lặng và sân trường chỉ còn tiếng lá bàng khô xào xạc, em tình cờ đi ngang qua dãy phòng học tầng hai. Ánh đèn vàng ấm áp vẫn hắt ra từ ô cửa sổ quen thuộc, nơi cô giáo chủ nhiệm đang cặm cụi bên chồng vở kiểm tra.</p>
+              <p>Chúng em thường chỉ nhìn thấy những bài giảng sôi nổi trên lớp, mà đôi khi quên mất phía sau mỗi tiết học bốn mươi lăm phút ấy là biết bao giờ đồng hồ thầy cô lặng lẽ chuẩn bị. Từng dòng phê <em>"Em có tiến bộ, cố gắng phát huy nhé!"</em> hay <em>"Chú ý cẩn thận hơn ở bước biến đổi này"</em> không chỉ là mực đỏ trên giấy trắng, mà là sự quan tâm tỉ mỉ dành cho từng cá nhân trong tập thể.</p>
+              <p>Ngày 20/11 năm nay, món quà lớn nhất chúng em muốn gửi tới cô không chỉ là những đóa hoa tươi, mà là sự trưởng thành, tự giác và đoàn kết của cả tập thể lớp.</p>
+            </div>
+          `
+        }
+      ];
+
+      // 4 Journey Stages
+      const journeyStages = [
+        {
+          badge: 'Chặng 1 • Mùa Thu Bỡ Ngỡ',
+          icon: '🍂',
+          title: 'Ánh Mắt Dịu Hiền Nơi Cổng Trường Mùa Thu',
+          desc: 'Ngày đầu tiên bước qua cánh cổng trường với bao bỡ ngỡ, chính nụ cười ấm áp và cái nắm tay khích lệ của thầy cô chủ nhiệm đã biến nơi xa lạ thành ngôi nhà thứ hai tràn ngập tiếng cười.',
+          quote: '"Bước chân nhỏ ngập ngừng nơi bậc cửa — Thầy mỉm cười mở cả bầu trời xanh."'
+        },
+        {
+          badge: 'Chặng 2 • Những Trang Vở Mở',
+          icon: '📖',
+          title: 'Khơi Nguồn Đam Mê Từ Từng Tiết Học',
+          desc: 'Mỗi tiết học là một cuộc hành trình khám phá thế giới. Thầy cô kiên nhẫn giải thích từng khái niệm khó, khơi dậy trong chúng em niềm say mê tìm tòi và tư duy độc lập.',
+          quote: '"Mỗi viên phấn nhỏ hao dần trên bảng — Hóa thành vầng sáng trong mắt học trò."'
+        },
+        {
+          badge: 'Chặng 3 • Bao Dung & Nâng Đỡ',
+          icon: '🕯️',
+          title: 'Bàn Tay Nâng Đỡ Sau Những Lần Vấp Ngã',
+          desc: 'Tuổi học trò không tránh khỏi những phút xao nhãng hay điểm số chưa như ý. Thay vì trách phạt nặng lời, thầy cô luôn lắng nghe, chỉ dẫn để chúng em tự tin đứng dậy.',
+          quote: '"Bao dung của thầy rộng hơn biển cả — Kiên nhẫn của cô ấm tựa nắng mai."'
+        },
+        {
+          badge: 'Chặng 4 • Chắp Cánh Tương Lai',
+          icon: '🕊️',
+          title: 'Hành Trang Vững Chãi Vươn Tới Chân Trời Mới',
+          desc: 'Khi chuyến đò cập bến, hành trang chúng em mang theo không chỉ là kiến thức vững vàng mà còn là nhân cách sống tử tế, biết yêu thương và cống hiến cho xã hội.',
+          quote: '"Mai tung cánh giữa bầu trời rộng lớn — Vẫn hướng về bến đò cũ tri ân."'
+        }
+      ];
+
+      // Interactive Quiz Data
+      const quizQuestions = [
+        {
+          q: 'Câu 1: Ngày Nhà giáo Việt Nam 20/11 chính thức được Hội đồng Bộ trưởng (nay là Chính phủ) quyết định lấy làm ngày lễ kỷ niệm hàng năm từ năm nào?',
+          options: ['Năm 1975', 'Năm 1982', 'Năm 1986', 'Năm 1990'],
+          correct: 1
+        },
+        {
+          q: 'Câu 2: Câu tục ngữ nào sau đây thể hiện sâu sắc truyền thống tôn sư trọng đạo của dân tộc Việt Nam?',
+          options: [
+            'Không thầy đố mày làm nên',
+            'Đi một ngày đàng, học một sàng khôn',
+            'Học ăn, học nói, học gói, học mở',
+            'Có công mài sắt, có ngày nên kim'
+          ],
+          correct: 0
+        },
+        {
+          q: 'Câu 3: Bài hát nổi tiếng "Bụi Phấn" ("Khi thầy viết bảng, bụi phấn rơi rơi...") gắn liền với biết bao thế hệ học trò Việt Nam là sáng tác của hai nhạc sĩ nào?',
+          options: [
+            'Hoàng Hiệp và Thơ Lê Giang',
+            'Vũ Hoàng và Lê Văn Lộc',
+            'Phạm Trọng Cầu và Nguyễn Ngọc Thiện',
+            'Trịnh Công Sơn và Văn Cao'
+          ],
+          correct: 1
+        },
+        {
+          q: 'Câu 4: Danh nhân văn hóa nào của lịch sử Việt Nam được tôn vinh là "Vạn thế sư biểu" (Người thầy chuẩn mực của muôn đời)?',
+          options: ['Chu Văn An', 'Lê Quý Đôn', 'Nguyễn Bỉnh Khiêm', 'Nguyễn Thiếp'],
+          correct: 0
+        }
+      ];
+      let userQuizAnswers = {};
+
+      // Initial Gratitude Tree Wishes (8 nodes with x,y on SVG 700x440)
+      const treeWishes = [
+        {
+          sender: 'Tập thể Tổ 1',
+          recipient: 'Cô Giáo Chủ Nhiệm',
+          symbol: '📚',
+          message: 'Kính chúc Cô luôn giữ mãi nụ cười rạng rỡ và ngọn lửa yêu nghề. Cảm ơn Cô đã luôn là người mẹ hiền thứ hai của tập thể lớp!',
+          x: 350, y: 95
+        },
+        {
+          sender: 'Nhóm Học Sinh Tổ 2',
+          recipient: 'Quý Thầy Cô Tổ Toán - Tin',
+          symbol: '🌻',
+          message: 'Cảm ơn Thầy Cô đã dạy chúng em tư duy logic, sự kiên trì trước mỗi bài toán khó và cách ứng dụng công nghệ sáng tạo!',
+          x: 245, y: 145
+        },
+        {
+          sender: 'Nhóm Học Sinh Tổ 3',
+          recipient: 'Quý Thầy Cô Tổ Ngữ Văn - Sử - Địa',
+          symbol: '🌹',
+          message: 'Nhờ những bài giảng đầy cảm xúc của Thầy Cô, chúng em thêm yêu tiếng Việt, tự hào về lịch sử và biết sống nhân ái hơn mỗi ngày.',
+          x: 455, y: 140
+        },
+        {
+          sender: 'Nhóm Học Sinh Tổ 4',
+          recipient: 'Quý Thầy Cô Tổ Tự Nhiên',
+          symbol: '🏮',
+          message: 'Chúc Quý Thầy Cô ngày 20/11 ngập tràn niềm vui! Những tiết thực hành thí nghiệm của Thầy Cô luôn là kỷ niệm tuyệt vời nhất.',
+          x: 185, y: 205
+        },
+        {
+          sender: 'Ban Cán Sự Lớp',
+          recipient: 'Ban Giám Hiệu & Hội Đồng Sư Phạm',
+          symbol: '💐',
+          message: 'Kính chúc Ban Giám Hiệu và toàn thể Quý Thầy Cô sức khỏe dồi dào, tiếp tục chèo lái con thuyền giáo dục của trường đạt nhiều thành tựu mới!',
+          x: 515, y: 200
+        },
+        {
+          sender: 'Bút danh: Học Trò Nhỏ',
+          recipient: 'Thầy Cô Tổ Ngoại Ngữ & Nghệ Thuật',
+          symbol: '📚',
+          message: 'Cảm ơn Thầy Cô đã mở ra cánh cửa hội nhập quốc tế và nuôi dưỡng tâm hồn nghệ thuật trong sáng cho chúng em.',
+          x: 295, y: 185
+        },
+        {
+          sender: 'Đoàn Viên Chi Đoàn',
+          recipient: 'Thầy Cô Công Tác Đoàn & Thể Chất',
+          symbol: '🌻',
+          message: 'Kính chúc Thầy Cô luôn tràn đầy năng lượng, nhiệt huyết và đồng hành cùng tuổi trẻ học đường trong mọi phong trào!',
+          x: 410, y: 185
+        },
+        {
+          sender: 'Tập Thể Lớp 12A3',
+          recipient: 'Tất Cả Quý Thầy Cô Đáng Kính',
+          symbol: '🌹',
+          message: 'Ngàn lời tri ân chân thành nhất xin gửi tới những Người Lái Đò thầm lặng nhân dịp 20/11!',
+          x: 350, y: 150
+        }
+      ];
+
+      // Suggested wishes for quick fill
+      const wishSuggestions = [
+        'Nhân ngày Nhà giáo Việt Nam 20/11, chúng em kính chúc Thầy Cô luôn dồi dào sức khỏe, hạnh phúc và giữ mãi ngọn lửa nhiệt huyết trên bục giảng!',
+        'Cảm ơn Thầy Cô đã luôn kiên nhẫn, bao dung và truyền cho chúng em niềm tin để vươn tới những ước mơ tươi đẹp nhất.',
+        'Dẫu mai này đi khắp bốn phương trời, từng lời dạy ân cần của Thầy Cô vẫn luôn là hành trang quý giá nhất trong tim chúng em.'
+      ];
+      let suggestIndex = 0;
+
+      // -----------------------------------------------------------------------
+      // 2. TOAST & PARTICLE BURST HELPERS
+      // -----------------------------------------------------------------------
+      function showToast(title, subtitle) {
+        const container = document.getElementById('toastContainer');
+        if (!container) return;
+        const item = document.createElement('div');
+        item.className = 'pointer-events-auto bg-rose-950 text-amber-50 border border-amber-400/70 rounded-xl px-4 py-3 shadow-xl flex items-start gap-3 transition-all duration-300';
+        item.innerHTML = `
+          <span class="text-xl">🌸</span>
+          <div class="text-xs">
+            <p class="font-bold text-amber-300">${title}</p>
+            <p class="text-amber-100/90 mt-0.5">${subtitle}</p>
+          </div>
+        `;
+        container.appendChild(item);
+        setTimeout(() => {
+          item.style.opacity = '0';
+          item.style.transform = 'translateY(10px)';
+          setTimeout(() => item.remove(), 320);
+        }, 3400);
+      }
+
+      function spawnFlowerBurst(clientX, clientY) {
+        const icons = ['🌹', '📚', '🌻', '💐', '✨', '❤️', '🍁'];
+        const x = clientX || window.innerWidth / 2;
+        const y = clientY || window.innerHeight / 2;
+        for (let i = 0; i < 14; i++) {
+          const el = document.createElement('div');
+          el.className = 'burst-particle text-lg sm:text-xl select-none';
+          el.textContent = icons[i % icons.length];
+          el.style.left = x + 'px';
+          el.style.top = y + 'px';
+          document.body.appendChild(el);
+
+          const angle = (Math.PI * 2 * i) / 14 + (Math.random() - 0.5) * 0.4;
+          const dist = 60 + Math.random() * 90;
+          const dx = Math.cos(angle) * dist;
+          const dy = Math.sin(angle) * dist - 40;
+
+          requestAnimationFrame(() => {
+            el.style.transform = `translate(${dx}px, ${dy}px) scale(1.3) rotate(${Math.round(Math.random() * 90 - 45)}deg)`;
+            el.style.opacity = '0';
+          });
+          setTimeout(() => el.remove(), 1300);
+        }
+      }
+
+      // -----------------------------------------------------------------------
+      // 3. RENDER STUDENT WORKS & MODAL
+      // -----------------------------------------------------------------------
+      function renderWorks() {
+        const grid = document.getElementById('worksGrid');
+        const searchInput = document.getElementById('searchWorksInput');
+        if (!grid) return;
+        const query = (searchInput ? searchInput.value : '').trim().toLowerCase();
+
+        const filtered = studentWorks.filter((w) => {
+          const matchCat = currentWorkFilter === 'all' || w.category === currentWorkFilter;
+          const matchText = !query || w.title.toLowerCase().includes(query) || w.author.toLowerCase().includes(query) || w.excerpt.toLowerCase().includes(query);
+          return matchCat && matchText;
+        });
+
+        if (filtered.length === 0) {
+          grid.innerHTML = `
+            <div class="col-span-full p-8 text-center rounded-2xl bg-amber-50/70 border border-amber-300 text-stone-600 text-sm">
+              Không tìm thấy tác phẩm phù hợp với từ khóa. Hãy thử từ khóa khác!
+            </div>
+          `;
+          return;
+        }
+
+        grid.innerHTML = filtered.map((w) => `
+          <article class="newspaper-frame editorial-card rounded-2xl p-5 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold ${w.category === 'tho' ? 'bg-rose-900 text-amber-100' : 'bg-amber-700 text-white'}">
+                  ${w.categoryLabel}
+                </span>
+                <span class="text-[11px] text-emerald-800 font-semibold">✓ Tự sáng tác</span>
+              </div>
+              <h3 class="font-editorial font-bold text-xl text-rose-950 leading-snug mb-2">${w.title}</h3>
+              <p class="text-xs sm:text-sm text-stone-700 italic leading-relaxed mb-3">"${w.excerpt}"</p>
+            </div>
+            <div class="pt-3 border-t border-amber-300/60 flex items-center justify-between gap-2">
+              <span class="text-xs font-medium text-stone-600">${w.author}</span>
+              <div class="flex items-center gap-1.5">
+                <button type="button" data-like-id="${w.id}" class="work-like-btn h-8 px-2.5 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-900 border border-rose-200 text-xs font-semibold inline-flex items-center justify-center gap-1 leading-none whitespace-nowrap transition-colors">
+                  <span class="leading-none">❤️</span>
+                  <span>${w.likes}</span>
+                </button>
+                <button type="button" data-read-id="${w.id}" class="work-read-btn h-8 px-3 rounded-lg bg-amber-100 hover:bg-amber-200 text-amber-950 border border-amber-300/70 font-bold text-xs inline-flex items-center justify-center leading-none whitespace-nowrap transition-colors">
+                  Đọc trọn vẹn →
+                </button>
+              </div>
+            </div>
+          </article>
+        `).join('');
+
+        // Attach event listeners
+        grid.querySelectorAll('.work-like-btn').forEach((btn) => {
+          btn.addEventListener('click', (e) => {
+            const id = btn.getAttribute('data-like-id');
+            const item = studentWorks.find((x) => x.id === id);
+            if (item) {
+              item.likes += 1;
+              spawnFlowerBurst(e.clientX, e.clientY);
+              renderWorks();
+            }
+          });
+        });
+
+        grid.querySelectorAll('.work-read-btn').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const id = btn.getAttribute('data-read-id');
+            openWorkModal(id);
+          });
+        });
+      }
+
+      function openWorkModal(workId) {
+        const work = studentWorks.find((x) => x.id === workId);
+        if (!work) return;
+        currentModalWorkId = work.id;
+        document.getElementById('modalWorkCategory').textContent = work.categoryLabel;
+        document.getElementById('modalWorkTitle').textContent = work.title;
+        document.getElementById('modalWorkAuthor').textContent = work.author + ' • ' + work.likes + ' lượt yêu thích';
+        document.getElementById('modalWorkBody').innerHTML = work.contentHtml;
+        const modal = document.getElementById('readerModal');
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+
+      function openEditorialModal() {
+        currentModalWorkId = 'editorial';
+        document.getElementById('modalWorkCategory').textContent = 'Bài Viết Trọng Tâm 20/11';
+        document.getElementById('modalWorkTitle').textContent = 'Những Mùa Phấn Trắng Và Chuyến Đò Chở Nặng Yêu Thương';
+        document.getElementById('modalWorkAuthor').textContent = 'Ban Biên Tập Báo Tường Lớp • ' + editorialLikes + ' lượt thả tim';
+        document.getElementById('modalWorkBody').innerHTML = `
+          <div class="space-y-4 text-sm sm:text-base leading-relaxed text-justify text-stone-800">
+            <p>Tháng Mười Một về mang theo cái se lạnh dịu dàng của gió thu và sắc nắng vàng ươm trải dài trên từng tán cây sân trường. Trong nhịp chảy hối hả của kỷ nguyên số — khi trí tuệ nhân tạo và những kho dữ liệu khổng lồ có thể giải đáp hàng triệu câu hỏi chỉ trong một tích tắc — có một giá trị vĩnh cửu mà không một cỗ máy nào có thể thay thế được: đó là ánh mắt bao dung, sự kiên nhẫn vô bờ và trái tim ấm nóng của người thầy.</p>
+            <p>Thầy cô không chỉ giảng dạy những định lý toán học, những vần thơ văn học hay quy luật của tự nhiên. Qua từng nét phấn trắng miệt mài trên bảng đen, qua những lời nhắc nhở ân cần khi chúng em vấp ngã, thầy cô đã truyền trao bài học lớn nhất của đời người: bài học về lòng trung thực, sự tử tế, lòng biết ơn và khát vọng vươn lên.</p>
+            <p>Truyền thống <strong>"Tôn sư trọng đạo"</strong> của mái trường thân yêu được hun đúc qua biết bao thế hệ. Mỗi mùa 20/11 đi qua không chỉ là dịp để học trò dâng tặng những bó hoa tươi thắm, mà còn là khoảng lặng thiêng liêng để mỗi chúng em tự soi chiếu lại mình, nỗ lực học tập và rèn luyện đạo đức để xứng đáng với niềm tin yêu mà thầy cô đã gửi gắm.</p>
+          </div>
+        `;
+        const modal = document.getElementById('readerModal');
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+
+      function closeReaderModal() {
+        const modal = document.getElementById('readerModal');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+
+      // -----------------------------------------------------------------------
+      // 4. INTERACTIVE JOURNEY TABS & 20/11 QUIZ
+      // -----------------------------------------------------------------------
+      function setupJourneyTabs() {
+        const buttons = document.querySelectorAll('.journey-tab-btn');
+        buttons.forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const idx = parseInt(btn.getAttribute('data-stage'), 10) || 0;
+            const st = journeyStages[idx];
+            if (!st) return;
+
+            buttons.forEach((b) => {
+              b.className = 'journey-tab-btn px-3 py-2 rounded-xl text-xs font-bold bg-amber-100 text-amber-950 hover:bg-amber-200 transition-all';
+            });
+            btn.className = 'journey-tab-btn px-3 py-2 rounded-xl text-xs font-bold bg-rose-900 text-white shadow-sm transition-all';
+
+            document.getElementById('stageBadge').textContent = st.badge;
+            document.getElementById('stageIcon').textContent = st.icon;
+            document.getElementById('stageTitle').textContent = st.title;
+            document.getElementById('stageDesc').textContent = st.desc;
+            document.getElementById('stageQuote').textContent = st.quote;
+          });
+        });
+      }
+
+      function renderQuiz() {
+        const container = document.getElementById('quizContainer');
+        if (!container) return;
+
+        let score = 0;
+        Object.keys(userQuizAnswers).forEach((qIdx) => {
+          const chosen = userQuizAnswers[qIdx];
+          if (chosen === quizQuestions[qIdx].correct) score += 1;
+        });
+
+        document.getElementById('quizScoreBadge').textContent = `${score} / ${quizQuestions.length}`;
+        const feedbackEl = document.getElementById('quizFeedbackText');
+        if (score === quizQuestions.length) {
+          feedbackEl.innerHTML = '🏆 <strong class="text-emerald-800">Xuất sắc! Bạn đã hoàn thành thử thách Tri Ân 20/11 với điểm tuyệt đối!</strong>';
+        } else if (Object.keys(userQuizAnswers).length > 0) {
+          feedbackEl.textContent = `Bạn đã trả lời đúng ${score}/${quizQuestions.length} câu. Hãy tiếp tục nhé!`;
+        } else {
+          feedbackEl.textContent = 'Hãy chọn đáp án đúng cho 4 câu hỏi trên.';
+        }
+
+        container.innerHTML = quizQuestions.map((item, qIdx) => {
+          const answered = userQuizAnswers[qIdx] !== undefined;
+          return `
+            <div class="p-3.5 rounded-xl bg-white border border-amber-200 shadow-sm">
+              <p class="text-xs sm:text-sm font-bold text-rose-950 mb-2">${item.q}</p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+                ${item.options.map((opt, oIdx) => {
+                  let btnClass = 'bg-stone-50 hover:bg-amber-100/70 text-stone-800 border-stone-200';
+                  if (answered) {
+                    if (oIdx === item.correct) {
+                      btnClass = 'bg-emerald-100 text-emerald-950 border-emerald-500 font-bold';
+                    } else if (userQuizAnswers[qIdx] === oIdx) {
+                      btnClass = 'bg-rose-100 text-rose-900 border-rose-400 line-through';
+                    }
+                  }
+                  return `
+                    <button type="button" data-q="${qIdx}" data-o="${oIdx}" class="quiz-opt-btn text-left px-3 py-1.5 rounded-lg border text-xs transition-all ${btnClass}">
+                      ${opt}
+                    </button>
+                  `;
+                }).join('')}
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        container.querySelectorAll('.quiz-opt-btn').forEach((btn) => {
+          btn.addEventListener('click', (e) => {
+            const q = parseInt(btn.getAttribute('data-q'), 10);
+            const o = parseInt(btn.getAttribute('data-o'), 10);
+            userQuizAnswers[q] = o;
+            if (o === quizQuestions[q].correct) {
+              spawnFlowerBurst(e.clientX, e.clientY);
+            }
+            renderQuiz();
+          });
+        });
+      }
+
+      // -----------------------------------------------------------------------
+      // 5. INTERACTIVE GRATITUDE TREE & WISH CARDS
+      // -----------------------------------------------------------------------
+      function renderGratitudeTreeAndWall() {
+        const group = document.getElementById('treeBlossomsGroup');
+        const wall = document.getElementById('wishesWallGrid');
+        const badge = document.getElementById('treeNodeCountBadge');
+        const wallBadge = document.getElementById('wishesWallCountBadge');
+        const statWishes = document.getElementById('statWishes');
+
+        if (badge) badge.textContent = `${treeWishes.length} cánh hoa đang nở`;
+        if (wallBadge) wallBadge.textContent = `${treeWishes.length} thiệp`;
+        if (statWishes) statWishes.textContent = String(treeWishes.length);
+
+        if (group) {
+          group.innerHTML = treeWishes.map((w, idx) => `
+            <g class="cursor-pointer tree-node-item" data-wish-idx="${idx}" transform="translate(${w.x}, ${w.y})">
+              <circle r="21" fill="#FEF3C7" fill-opacity="0.45" class="animate-ping" style="animation-duration: ${2.8 + (idx % 3) * 0.7}s" />
+              <circle r="18" fill="#FFFBEB" stroke="#D97706" stroke-width="2.5" />
+              <text text-anchor="middle" dominant-baseline="central" font-size="18">${w.symbol}</text>
+            </g>
+          `).join('');
+
+          group.querySelectorAll('.tree-node-item').forEach((node) => {
+            node.addEventListener('click', (e) => {
+              const idx = parseInt(node.getAttribute('data-wish-idx'), 10);
+              const w = treeWishes[idx];
+              if (!w) return;
+              document.getElementById('treeActiveIcon').textContent = w.symbol;
+              document.getElementById('treeActiveRecipient').textContent = 'Kính gửi: ' + w.recipient;
+              document.getElementById('treeActiveSender').textContent = w.sender;
+              document.getElementById('treeActiveMessage').textContent = '"' + w.message + '"';
+              spawnFlowerBurst(e.clientX, e.clientY);
+            });
+          });
+        }
+
+        if (wall) {
+          wall.innerHTML = treeWishes.slice().reverse().map((w, revIdx) => {
+            const origIdx = treeWishes.length - 1 - revIdx;
+            return `
+            <div data-wall-wish-idx="${origIdx}" class="wall-wish-card cursor-pointer p-3.5 rounded-xl bg-white border border-amber-300/90 shadow-sm hover:border-rose-700/60 hover:bg-amber-50/40 transition-all flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-1.5">
+                  <span class="text-lg leading-none">${w.symbol}</span>
+                  <span class="text-[11px] px-2 py-0.5 rounded-full bg-amber-100 text-amber-900 font-semibold truncate max-w-[150px]">${w.sender}</span>
+                </div>
+                <p class="font-editorial font-bold text-xs sm:text-sm text-rose-950 mb-1 truncate">Gửi: ${w.recipient}</p>
+                <p class="text-xs text-stone-700 italic leading-relaxed line-clamp-3">"${w.message}"</p>
+              </div>
+              <div class="mt-2.5 pt-2 border-t border-amber-100 text-[10px] text-rose-800 font-medium flex items-center justify-between">
+                <span>✨ Đã treo lên Cây Tri Ân</span>
+                <span>20/11</span>
+              </div>
+            </div>
+          `;
+          }).join('');
+
+          wall.querySelectorAll('.wall-wish-card').forEach((card) => {
+            card.addEventListener('click', (e) => {
+              const idx = parseInt(card.getAttribute('data-wall-wish-idx'), 10);
+              const w = treeWishes[idx];
+              if (!w) return;
+              document.getElementById('treeActiveIcon').textContent = w.symbol;
+              document.getElementById('treeActiveRecipient').textContent = 'Kính gửi: ' + w.recipient;
+              document.getElementById('treeActiveSender').textContent = w.sender;
+              document.getElementById('treeActiveMessage').textContent = '"' + w.message + '"';
+              spawnFlowerBurst(e.clientX, e.clientY);
+            });
+          });
+        }
+      }
+
+      // -----------------------------------------------------------------------
+      // 6. DETERMINISTIC SVG QR CODE GENERATOR (RULE 2a)
+      // -----------------------------------------------------------------------
+      function generateSvgQrCode(text) {
+        const size = 21;
+        const grid = Array.from({ length: size }, () => Array(size).fill(false));
+
+        function drawFinder(r0, c0) {
+          for (let r = 0; r < 7; r++) {
+            for (let c = 0; c < 7; c++) {
+              const border = r === 0 || r === 6 || c === 0 || c === 6;
+              const inner = r >= 2 && r <= 4 && c >= 2 && c <= 4;
+              if (border || inner) grid[r0 + r][c0 + c] = true;
+            }
+          }
+        }
+        drawFinder(0, 0);
+        drawFinder(0, size - 7);
+        drawFinder(size - 7, 0);
+
+        // Timing patterns
+        for (let i = 8; i < size - 8; i++) {
+          grid[6][i] = i % 2 === 0;
+          grid[i][6] = i % 2 === 0;
+        }
+
+        // Hash input text for deterministic data modules
+        let hash = 2166136261;
+        for (let i = 0; i < text.length; i++) {
+          hash ^= text.charCodeAt(i);
+          hash = Math.imul(hash, 16777619);
+        }
+
+        for (let r = 0; r < size; r++) {
+          for (let c = 0; c < size; c++) {
+            const inFinderTL = r < 8 && c < 8;
+            const inFinderTR = r < 8 && c >= size - 8;
+            const inFinderBL = r >= size - 8 && c < 8;
+            if (inFinderTL || inFinderTR || inFinderBL || r === 6 || c === 6) continue;
+            const bit = ((hash >>> ((r * size + c) % 28)) ^ (r * 13 + c * 7 + text.charCodeAt((r + c) % text.length))) & 1;
+            grid[r][c] = bit === 1;
+          }
+        }
+
+        let rects = '';
+        for (let r = 0; r < size; r++) {
+          for (let c = 0; c < size; c++) {
+            if (grid[r][c]) {
+              rects += `<rect x="${c * 8 + 8}" y="${r * 8 + 8}" width="7.2" height="7.2" rx="1.2" fill="#7F1D1D" />`;
+            }
+          }
+        }
+
+        const total = size * 8 + 16;
+        return `
+          <svg viewBox="0 0 ${total} ${total}" class="w-full h-full">
+            <rect width="${total}" height="${total}" rx="8" fill="#FFFDF9" />
+            ${rects}
+            <rect x="${total / 2 - 18}" y="${total / 2 - 18}" width="36" height="36" rx="6" fill="#FDF8F2" stroke="#D97706" stroke-width="2" />
+            <text x="${total / 2}" y="${total / 2 + 4}" text-anchor="middle" font-size="11" font-weight="bold" fill="#9F1239">20/11</text>
+          </svg>
+        `;
+      }
+
+      function updateClassAndQrDisplay() {
+        const inputClass = document.getElementById('inputClassName');
+        const inputSchool = document.getElementById('inputSchoolName');
+        const inputUrl = document.getElementById('inputShareUrl');
+
+        const classVal = (inputClass ? inputClass.value.trim() : '') || 'Tập thể Lớp 12A3';
+        const schoolVal = (inputSchool ? inputSchool.value.trim() : '') || 'Trường THCS - THPT Thăng Long';
+        const urlVal = (inputUrl ? inputUrl.value.trim() : '') || 'https://baotuong20-11-tri-an-thay-co.edu.vn/lop-12A3';
+
+        const mastheadClass = document.getElementById('mastheadClassName');
+        const mastheadSchool = document.getElementById('mastheadSchoolName');
+        const footerClass = document.getElementById('footerClassName');
+        const footerSchool = document.getElementById('footerSchoolName');
+        const navSub = document.getElementById('navClassSubtitle');
+        const qrCapClass = document.getElementById('qrCaptionClass');
+        const qrCapUrl = document.getElementById('qrCaptionUrl');
+        const qrWrapper = document.getElementById('qrSvgWrapper');
+
+        if (mastheadClass) mastheadClass.textContent = classVal;
+        if (mastheadSchool) mastheadSchool.textContent = schoolVal;
+        if (footerClass) footerClass.textContent = classVal;
+        if (footerSchool) footerSchool.textContent = schoolVal;
+        if (navSub) navSub.textContent = `${classVal} • Số Đặc Biệt 20/11`;
+        if (qrCapClass) qrCapClass.textContent = `${classVal} — Tri Ân Thầy Cô 20/11`;
+        if (qrCapUrl) qrCapUrl.textContent = urlVal;
+        if (qrWrapper) qrWrapper.innerHTML = generateSvgQrCode(urlVal + '|' + classVal);
+      }
+
+      // -----------------------------------------------------------------------
+      // 7. BACKGROUND MUSIC ("NHẠC TRI ÂN" - 40% VOLUME, NO VISIBLE PLAYER)
+      // -----------------------------------------------------------------------
+      const YT_VIDEO_ID = 'gOwbMN0JswA';
+      const YT_TARGET_VOLUME = 40;
+      let isPlayingMusic = false;
+      let ytIframeEl = null;
+      let ytVolumeTimers = [];
+
+      function getYtEmbedUrl() {
+        const params = new URLSearchParams({
+          autoplay: '1',
+          loop: '1',
+          playlist: YT_VIDEO_ID,
+          enablejsapi: '1',
+          widgetid: '1',
+          controls: '0',
+          disablekb: '1',
+          fs: '0',
+          modestbranding: '1',
+          rel: '0',
+          playsinline: '1'
+        });
+        if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
+          params.set('origin', window.location.origin);
+        }
+        return `https://www.youtube.com/embed/${YT_VIDEO_ID}?${params.toString()}`;
+      }
+
+      function sendYtCommand(funcName, args) {
+        if (!ytIframeEl || !ytIframeEl.contentWindow) return false;
+        try {
+          ytIframeEl.contentWindow.postMessage(
+            JSON.stringify({ event: 'command', func: funcName, args: args || [], id: 1, channel: 'widget' }),
+            '*'
+          );
+          return true;
+        } catch (err) {
+          return false;
+        }
+      }
+
+      function clearVolumeTimers() {
+        ytVolumeTimers.forEach((t) => clearTimeout(t));
+        ytVolumeTimers = [];
+      }
+
+      function enforceBackgroundVolume() {
+        clearVolumeTimers();
+        [150, 500, 1100, 2000, 3200].forEach((delay) => {
+          const timer = setTimeout(() => {
+            if (!isPlayingMusic) return;
+            sendYtCommand('unMute', []);
+            sendYtCommand('setVolume', [YT_TARGET_VOLUME]);
+          }, delay);
+          ytVolumeTimers.push(timer);
+        });
+      }
+
+      window.addEventListener('message', (e) => {
+        if (!ytIframeEl || e.source !== ytIframeEl.contentWindow) return;
+        try {
+          const data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
+          if (data && (data.event === 'onReady' || data.event === 'infoDelivery')) {
+            sendYtCommand('setVolume', [YT_TARGET_VOLUME]);
+          }
+        } catch (err) {}
+      });
+
+      function updateMusicButtonUI(playing) {
+        const eq = document.getElementById('musicEqualizer');
+        const label = document.getElementById('musicStatusText');
+        const icon = document.getElementById('musicStatusIcon');
+
+        if (playing) {
+          if (eq) eq.classList.add('eq-active');
+          if (label) label.textContent = 'Đang Phát';
+          if (icon) icon.textContent = '🎶';
+        } else {
+          if (eq) eq.classList.remove('eq-active');
+          if (label) label.textContent = 'Nhạc Tri Ân';
+          if (icon) icon.textContent = '🎵';
+        }
+      }
+
+      function startBackgroundMusic() {
+        const host = document.getElementById('ytBgAudioHost');
+        if (!ytIframeEl && host) {
+          ytIframeEl = document.createElement('iframe');
+          ytIframeEl.id = 'ytBgMusicIframe';
+          ytIframeEl.width = '1';
+          ytIframeEl.height = '1';
+          ytIframeEl.src = getYtEmbedUrl();
+          ytIframeEl.allow = 'autoplay; encrypted-media';
+          ytIframeEl.referrerPolicy = 'strict-origin-when-cross-origin';
+          ytIframeEl.setAttribute('tabindex', '-1');
+          ytIframeEl.setAttribute('aria-hidden', 'true');
+          ytIframeEl.addEventListener('load', () => {
+            if (!isPlayingMusic) return;
+            try {
+              ytIframeEl.contentWindow.postMessage(
+                JSON.stringify({ event: 'listening', id: 1, channel: 'widget' }),
+                '*'
+              );
+            } catch (err) {}
+            enforceBackgroundVolume();
+          });
+          host.innerHTML = '';
+          host.appendChild(ytIframeEl);
+        } else if (ytIframeEl) {
+          if (!sendYtCommand('playVideo', []) || window.location.protocol === 'file:') {
+            ytIframeEl.src = getYtEmbedUrl();
+          }
+        }
+
+        isPlayingMusic = true;
+        enforceBackgroundVolume();
+        updateMusicButtonUI(true);
+        showToast('Đang phát Nhạc Tri Ân (Âm lượng 40%)', 'Nhạc nền đang phát tự động, nhấn lại nút trên thanh điều hướng để tạm dừng.');
+      }
+
+      function pauseBackgroundMusic() {
+        isPlayingMusic = false;
+        clearVolumeTimers();
+        updateMusicButtonUI(false);
+
+        if (ytIframeEl) {
+          if (!sendYtCommand('pauseVideo', []) || window.location.protocol === 'file:') {
+            const host = document.getElementById('ytBgAudioHost');
+            if (host) host.innerHTML = '';
+            ytIframeEl = null;
+          }
+        }
+
+        showToast('Đã tạm dừng Nhạc Tri Ân', 'Nhấn "Nhạc Tri Ân" trên thanh điều hướng để phát lại.');
+      }
+
+      function toggleMusic() {
+        if (isPlayingMusic) {
+          pauseBackgroundMusic();
+        } else {
+          startBackgroundMusic();
+        }
+      }
+
+      // -----------------------------------------------------------------------
+      // 8. BACKGROUND CANVAS ANIMATION (AUTUMN LEAVES & FIREFLIES)
+      // -----------------------------------------------------------------------
+      const canvas = document.getElementById('petalCanvas');
+      const ctx = canvas ? canvas.getContext('2d') : null;
+      let particles = [];
+      let animFrameId = null;
+
+      function resizeCanvas() {
+        if (!canvas) return;
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+
+      function initParticles() {
+        if (!canvas) return;
+        particles = [];
+        const count = Math.min(36, Math.max(18, Math.floor(window.innerWidth / 42)));
+        const palette = ['#D97706', '#EA580C', '#9F1239', '#F59E0B', '#FB7185'];
+        for (let i = 0; i < count; i++) {
+          particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            size: 5 + Math.random() * 7,
+            speedY: 0.45 + Math.random() * 0.9,
+            speedX: -0.4 + Math.random() * 0.8,
+            angle: Math.random() * Math.PI * 2,
+            spin: (Math.random() - 0.5) * 0.025,
+            color: palette[i % palette.length],
+            alpha: 0.35 + Math.random() * 0.45
+          });
+        }
+      }
+
+      function animateParticles() {
+        if (!canvas || !ctx) return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        if (particleMode !== 'off') {
+          for (let i = 0; i < particles.length; i++) {
+            const p = particles[i];
+            p.y += particleMode === 'fireflies' ? -p.speedY * 0.6 : p.speedY;
+            p.x += p.speedX + Math.sin(p.angle) * 0.4;
+            p.angle += p.spin;
+
+            if (p.y > canvas.height + 20) p.y = -15;
+            if (p.y < -20) p.y = canvas.height + 15;
+            if (p.x > canvas.width + 20) p.x = -15;
+            if (p.x < -20) p.x = canvas.width + 15;
+
+            ctx.save();
+            ctx.translate(p.x, p.y);
+            ctx.rotate(p.angle);
+            ctx.globalAlpha = p.alpha;
+
+            if (particleMode === 'autumn') {
+              // Draw petal / autumn leaf shape
+              ctx.fillStyle = p.color;
+              ctx.beginPath();
+              ctx.moveTo(0, -p.size);
+              ctx.quadraticCurveTo(p.size, 0, 0, p.size);
+              ctx.quadraticCurveTo(-p.size, 0, 0, -p.size);
+              ctx.fill();
+            } else {
+              // Glowing fireflies
+              const grad = ctx.createRadialGradient(0, 0, 1, 0, 0, p.size * 1.4);
+              grad.addColorStop(0, '#FEF08A');
+              grad.addColorStop(0.5, '#F59E0B');
+              grad.addColorStop(1, 'rgba(245, 158, 11, 0)');
+              ctx.fillStyle = grad;
+              ctx.beginPath();
+              ctx.arc(0, 0, p.size * 1.4, 0, Math.PI * 2);
+              ctx.fill();
+            }
+            ctx.restore();
+          }
+        }
+        animFrameId = requestAnimationFrame(animateParticles);
+      }
+
+      // -----------------------------------------------------------------------
+      // 9. TYPEWRITER QUOTE & SCROLL REVEAL
+      // -----------------------------------------------------------------------
+      let quoteIdx = 0;
+      let charIdx = 0;
+      let isDeletingQuote = false;
+
+      function stepTypewriter() {
+        const el = document.getElementById('typewriterText');
+        if (!el) return;
+        const fullText = quotes[quoteIdx % quotes.length];
+
+        if (!isDeletingQuote) {
+          charIdx++;
+          el.textContent = fullText.slice(0, charIdx);
+          if (charIdx >= fullText.length) {
+            isDeletingQuote = true;
+            setTimeout(stepTypewriter, 3400);
+            return;
+          }
+          setTimeout(stepTypewriter, 32);
+        } else {
+          charIdx -= 2;
+          el.textContent = fullText.slice(0, Math.max(0, charIdx));
+          if (charIdx <= 0) {
+            isDeletingQuote = false;
+            quoteIdx++;
+            setTimeout(stepTypewriter, 350);
+            return;
+          }
+          setTimeout(stepTypewriter, 16);
+        }
+      }
+
+      function setupScrollReveal() {
+        const items = document.querySelectorAll('.reveal-item');
+        items.forEach((item) => item.classList.add('revealed'));
+        if ('IntersectionObserver' in window) {
+          const obs = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+              }
+            });
+          }, { threshold: 0.05 });
+          items.forEach((item) => obs.observe(item));
+        }
+      }
+
+      // -----------------------------------------------------------------------
+      // 10. WIRE ALL CONTROLS ON DOM READY
+      // -----------------------------------------------------------------------
+      function initApp() {
+        // Sync initial counts
+        const headerFlowerEl = document.getElementById('headerFlowerCount');
+        const statFlowersEl = document.getElementById('statFlowers');
+        const statWorksEl = document.getElementById('statWorks');
+        const editorialLikeEl = document.getElementById('editorialLikeCount');
+        if (headerFlowerEl) headerFlowerEl.textContent = flowerCount.toLocaleString('vi-VN');
+        if (statFlowersEl) statFlowersEl.textContent = flowerCount.toLocaleString('vi-VN');
+        if (statWorksEl) statWorksEl.textContent = String(studentWorks.length);
+        if (editorialLikeEl) editorialLikeEl.textContent = String(editorialLikes);
+
+        // Render sections
+        renderWorks();
+        setupJourneyTabs();
+        renderQuiz();
+        renderGratitudeTreeAndWall();
+        updateClassAndQrDisplay();
+        setupScrollReveal();
+        setTimeout(stepTypewriter, 1200);
+
+        // Start canvas animation
+        resizeCanvas();
+        initParticles();
+        if (animFrameId) cancelAnimationFrame(animFrameId);
+        animateParticles();
+        window.addEventListener('resize', () => {
+          resizeCanvas();
+          initParticles();
+        });
+
+        // Offer Flower Buttons
+        function handleOfferFlower(e) {
+          flowerCount += 1;
+          if (headerFlowerEl) headerFlowerEl.textContent = flowerCount.toLocaleString('vi-VN');
+          if (statFlowersEl) statFlowersEl.textContent = flowerCount.toLocaleString('vi-VN');
+          try {
+            localStorage.setItem('bt2011_flowers_129', String(flowerCount));
+          } catch (err) {}
+          spawnFlowerBurst(e.clientX, e.clientY);
+          showToast('Đã dâng 1 đóa hoa tri ân!', `Tổng cộng ${flowerCount.toLocaleString('vi-VN')} đóa hoa đã được gửi tới Thầy Cô.`);
+        }
+
+        document.getElementById('btnOfferFlowerHeader')?.addEventListener('click', handleOfferFlower);
+        document.getElementById('btnOfferFlowerMain')?.addEventListener('click', handleOfferFlower);
+
+        // Particle Mode Button
+        document.getElementById('btnParticleMode')?.addEventListener('click', () => {
+          const icon = document.getElementById('particleIcon');
+          const label = document.getElementById('particleLabel');
+          if (particleMode === 'autumn') {
+            particleMode = 'fireflies';
+            if (icon) icon.textContent = '✨';
+            if (label) label.textContent = 'Đom Đóm Tri Ân';
+            showToast('Hiệu ứng: Đom Đóm Tri Ân', 'Những đom đóm ánh vàng ấm áp đang bay lên.');
+          } else if (particleMode === 'fireflies') {
+            particleMode = 'off';
+            if (icon) icon.textContent = '🌿';
+            if (label) label.textContent = 'Tắt Hiệu Ứng';
+            showToast('Đã tạm tắt hiệu ứng hạt rơi', 'Nhấn thêm lần nữa để bật lại Lá Thu & Hoa.');
+          } else {
+            particleMode = 'autumn';
+            if (icon) icon.textContent = '🍁';
+            if (label) label.textContent = 'Lá Thu & Hoa';
+            showToast('Hiệu ứng: Lá Thu & Hoa', 'Cánh hoa và lá thu vàng đang rơi nhẹ nhàng.');
+          }
+        });
+
+        // Music Button
+        document.getElementById('btnMusicToggle')?.addEventListener('click', toggleMusic);
+
+        // Mobile Menu Toggle
+        const mobileMenuPanel = document.getElementById('mobileMenuPanel');
+        document.getElementById('btnMobileMenu')?.addEventListener('click', () => {
+          mobileMenuPanel?.classList.toggle('hidden');
+        });
+        document.querySelectorAll('.mobile-nav-link').forEach((link) => {
+          link.addEventListener('click', () => mobileMenuPanel?.classList.add('hidden'));
+        });
+
+        // Editorial Buttons
+        document.getElementById('btnReadEditorialHero')?.addEventListener('click', openEditorialModal);
+        document.getElementById('btnOpenEditorialModal')?.addEventListener('click', openEditorialModal);
+        document.getElementById('btnLikeEditorial')?.addEventListener('click', (e) => {
+          editorialLikes += 1;
+          if (editorialLikeEl) editorialLikeEl.textContent = String(editorialLikes);
+          try {
+            localStorage.setItem('bt2011_ed_likes_129', String(editorialLikes));
+          } catch (err) {}
+          spawnFlowerBurst(e.clientX, e.clientY);
+          showToast('Cảm ơn bạn đã yêu thích Bài Viết!', 'Tình cảm tri ân thầy cô đang được lan tỏa.');
+        });
+
+        // Wishes Wall Scroll & Collapse Controls
+        let isWishesExpanded = false;
+        let isWishesCollapsed = false;
+        const btnExpandWishes = document.getElementById('btnExpandWishesScroll');
+        const btnCollapseWishes = document.getElementById('btnToggleWishesCollapse');
+        const wishesScrollBox = document.getElementById('wishesWallScrollBox');
+        const wishesCollapsible = document.getElementById('wishesWallCollapsible');
+
+        btnExpandWishes?.addEventListener('click', () => {
+          if (isWishesCollapsed && wishesCollapsible) {
+            isWishesCollapsed = false;
+            wishesCollapsible.classList.remove('hidden');
+            if (btnCollapseWishes) btnCollapseWishes.innerHTML = '<span>− Thu gọn danh sách</span>';
+          }
+          isWishesExpanded = !isWishesExpanded;
+          if (wishesScrollBox) {
+            wishesScrollBox.classList.toggle('max-h-64', !isWishesExpanded);
+            wishesScrollBox.classList.toggle('max-h-[34rem]', isWishesExpanded);
+          }
+          btnExpandWishes.innerHTML = isWishesExpanded
+            ? '<span>↕ Thu nhỏ khung cuộn</span>'
+            : '<span>↕ Mở rộng khung cuộn</span>';
+        });
+
+        btnCollapseWishes?.addEventListener('click', () => {
+          isWishesCollapsed = !isWishesCollapsed;
+          if (wishesCollapsible) {
+            wishesCollapsible.classList.toggle('hidden', isWishesCollapsed);
+          }
+          btnCollapseWishes.innerHTML = isWishesCollapsed
+            ? '<span>+ Hiện danh sách thiệp</span>'
+            : '<span>− Thu gọn danh sách</span>';
+        });
+
+        // Works Filter & Search
+        document.querySelectorAll('.work-filter-btn').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            currentWorkFilter = btn.getAttribute('data-filter') || 'all';
+            document.querySelectorAll('.work-filter-btn').forEach((b) => {
+              b.className = 'work-filter-btn h-9 px-3.5 rounded-xl text-xs font-bold bg-amber-100 text-amber-950 border border-amber-300/80 hover:bg-amber-200 inline-flex items-center justify-center gap-1.5 leading-none whitespace-nowrap transition-all';
+            });
+            btn.className = 'work-filter-btn h-9 px-3.5 rounded-xl text-xs font-bold bg-rose-900 text-white border border-rose-900 shadow-sm inline-flex items-center justify-center gap-1.5 leading-none whitespace-nowrap transition-all';
+            renderWorks();
+          });
+        });
+        document.getElementById('searchWorksInput')?.addEventListener('input', renderWorks);
+
+        // Reader Modal Controls
+        document.getElementById('btnCloseReaderModal')?.addEventListener('click', closeReaderModal);
+        document.getElementById('btnModalCloseBottom')?.addEventListener('click', closeReaderModal);
+        document.getElementById('btnModalHeart')?.addEventListener('click', (e) => {
+          spawnFlowerBurst(e.clientX, e.clientY);
+          const modalAuthor = document.getElementById('modalWorkAuthor');
+          if (currentModalWorkId === 'editorial') {
+            editorialLikes += 1;
+            if (editorialLikeEl) editorialLikeEl.textContent = String(editorialLikes);
+            if (modalAuthor) modalAuthor.textContent = 'Ban Biên Tập Báo Tường Lớp • ' + editorialLikes + ' lượt thả tim';
+            try {
+              localStorage.setItem('bt2011_ed_likes_129', String(editorialLikes));
+            } catch (err) {}
+          } else {
+            const item = studentWorks.find((x) => x.id === currentModalWorkId);
+            if (item) {
+              item.likes += 1;
+              renderWorks();
+              if (modalAuthor) modalAuthor.textContent = item.author + ' • ' + item.likes + ' lượt yêu thích';
+            }
+          }
+          showToast('Đã thả tim tác phẩm!', 'Cảm ơn bạn đã khích lệ tác giả.');
+        });
+
+        // Quiz Reset
+        document.getElementById('btnResetQuiz')?.addEventListener('click', () => {
+          userQuizAnswers = {};
+          renderQuiz();
+          showToast('Đã làm mới câu hỏi', 'Hãy thử sức lại với 4 câu hỏi tìm hiểu ngày 20/11.');
+        });
+
+        // Wish Form & Symbol Picker
+        document.querySelectorAll('.symbol-pick-btn').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            selectedSymbol = btn.getAttribute('data-symbol') || '📚';
+            document.querySelectorAll('.symbol-pick-btn').forEach((b) => {
+              b.className = 'symbol-pick-btn py-1.5 rounded-xl border border-amber-300 bg-white text-lg flex items-center justify-center';
+            });
+            btn.className = 'symbol-pick-btn py-1.5 rounded-xl border-2 border-rose-800 bg-rose-50 text-lg flex items-center justify-center';
+          });
+        });
+
+        document.getElementById('btnSuggestWish')?.addEventListener('click', () => {
+          const msgInput = document.getElementById('wishMessage');
+          if (msgInput) {
+            msgInput.value = wishSuggestions[suggestIndex % wishSuggestions.length];
+            suggestIndex += 1;
+          }
+        });
+
+        document.getElementById('wishForm')?.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const sender = document.getElementById('wishSender')?.value.trim();
+          const recipient = document.getElementById('wishRecipient')?.value.trim();
+          const message = document.getElementById('wishMessage')?.value.trim();
+          if (!sender || !recipient || !message) return;
+
+          // Compute a nice position inside the canopy
+          const angle = Math.random() * Math.PI * 2;
+          const rx = 40 + Math.random() * 145;
+          const ry = 25 + Math.random() * 65;
+          const x = Math.round(350 + Math.cos(angle) * rx);
+          const y = Math.round(155 + Math.sin(angle) * ry);
+
+          const newWish = { sender, recipient, symbol: selectedSymbol, message, x, y };
+          treeWishes.push(newWish);
+          renderGratitudeTreeAndWall();
+
+          document.getElementById('treeActiveIcon').textContent = newWish.symbol;
+          document.getElementById('treeActiveRecipient').textContent = 'Kính gửi: ' + newWish.recipient;
+          document.getElementById('treeActiveSender').textContent = newWish.sender;
+          document.getElementById('treeActiveMessage').textContent = '"' + newWish.message + '"';
+
+          document.getElementById('wishForm').reset();
+          spawnFlowerBurst(window.innerWidth / 2, window.innerHeight / 2);
+          showToast('Đã treo lời chúc lên Cây Tri Ân!', `Thiệp của "${sender}" đã nở hoa trên tán cây.`);
+        });
+
+        // QR & Class Info Modal
+        const qrModal = document.getElementById('qrClassModal');
+        function openQrModal() {
+          updateClassAndQrDisplay();
+          qrModal?.classList.remove('hidden');
+          qrModal?.classList.add('flex');
+        }
+        function closeQrModal() {
+          qrModal?.classList.add('hidden');
+          qrModal?.classList.remove('flex');
+        }
+
+        document.getElementById('btnOpenClassModal')?.addEventListener('click', openQrModal);
+        document.getElementById('btnOpenQrQuick')?.addEventListener('click', openQrModal);
+        document.getElementById('btnShowQrModalBottom')?.addEventListener('click', openQrModal);
+        document.getElementById('btnCloseQrModal')?.addEventListener('click', closeQrModal);
+        document.getElementById('btnSaveClassInfo')?.addEventListener('click', () => {
+          updateClassAndQrDisplay();
+          showToast('Đã cập nhật thông tin Lớp & Mã QR!', 'Manchette báo tường và mã QR đã được làm mới.');
+        });
+
+        // Copy Share Info Button
+        document.getElementById('btnCopyShareLink')?.addEventListener('click', () => {
+          const classVal = document.getElementById('inputClassName')?.value.trim() || 'Tập thể Lớp 12A3';
+          const urlVal = document.getElementById('inputShareUrl')?.value.trim() || '';
+          const summary = `Sản phẩm Báo tường điện tử 20/11: "Tri ân thầy cô - Kết nối yêu thương" | Đơn vị: ${classVal} | Đường dẫn: ${urlVal}`;
+          try {
+            const ta = document.createElement('textarea');
+            ta.value = summary;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            ta.remove();
+          } catch (err) {}
+          showToast('Đã sao chép thông tin nộp bài!', 'Bạn có thể dán (Ctrl+V) vào biểu mẫu nộp bài của Ban Tổ Chức.');
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initApp);
+      } else {
+        initApp();
+      }
+    })();
+  </script>
+</body>
+</html>
